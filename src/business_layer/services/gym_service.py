@@ -2,7 +2,7 @@ import logging
 from typing import Tuple
 
 from src.data_layer.entities.gym import Gym
-from src.data_layer.exception.security_exception import SecurityException
+from src.business_layer.exception.security_exception import SecurityException
 
 
 class GymService:
