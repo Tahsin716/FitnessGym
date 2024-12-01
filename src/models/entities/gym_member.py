@@ -11,6 +11,6 @@ class GymMember(Member):
         super().__init__(data)
         self.__membership_type : MembershipType = data['membership_type']
         self.__membership_start_date : datetime = datetime.datetime.now(datetime.timezone.utc)
-        self.__height = data['height']
-        self.__weight = data['weight']
+        self.__height : float = data['height']
+        self.__weight : float = data['weight']
 
