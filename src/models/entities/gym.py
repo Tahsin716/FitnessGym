@@ -1,8 +1,6 @@
 from dataclasses import dataclass
-import datetime
 
 from src.models.entities.base_entity import BaseEntity
-from src.models.utils.common import Common
 
 
 @dataclass

@@ -1,9 +1,8 @@
-from dataclasses import dataclass
 import datetime
+
 from src.models.utils.common import Common
 
 
-@dataclass
 class BaseEntity:
     def __init__(self):
         self.__id: str = Common.new_guid()

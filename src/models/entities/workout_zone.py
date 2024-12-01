@@ -1,9 +1,7 @@
 from dataclasses import dataclass
-import datetime
 
 from src.models.entities.base_entity import BaseEntity
 from src.models.enum.zone_type import ZoneType
-from src.models.utils.common import Common
 
 
 @dataclass
