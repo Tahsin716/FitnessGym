@@ -1,11 +1,11 @@
 import logging
 from typing import Tuple
 
-from src.models.entities.gym import Gym
-from src.models.exception.security_exception import SecurityException
+from src.data_layer.entities.gym import Gym
+from src.data_layer.exception.security_exception import SecurityException
 
 
-class GymRepository:
+class GymService:
     def __init__(self):
         self.__gyms : dict[str, Gym] = {}
 

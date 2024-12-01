@@ -1,8 +1,8 @@
 import datetime
 
-from src.models.entities.base_entity import BaseEntity
-from src.models.enum.appointment_status import AppointmentStatus
-from src.models.enum.appointment_type import AppointmentType
+from src.data_layer.entities.base_entity import BaseEntity
+from src.data_layer.enum.appointment_status import AppointmentStatus
+from src.data_layer.enum.appointment_type import AppointmentType
 
 
 class Appointment(BaseEntity):

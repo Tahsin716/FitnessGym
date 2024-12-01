@@ -1,7 +1,7 @@
 import datetime
 
-from src.models.entities.member import Member
-from src.models.enum.membership_type import MembershipType
+from src.data_layer.entities.member import Member
+from src.data_layer.enum.membership_type import MembershipType
 
 
 class GymMember(Member):

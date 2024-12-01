@@ -1,4 +1,4 @@
-from src.models.entities.base_entity import BaseEntity
+from src.data_layer.entities.base_entity import BaseEntity
 
 
 class Attendance(BaseEntity):

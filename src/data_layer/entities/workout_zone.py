@@ -1,5 +1,5 @@
-from src.models.entities.base_entity import BaseEntity
-from src.models.enum.zone_type import ZoneType
+from src.data_layer.entities.base_entity import BaseEntity
+from src.data_layer.enum.zone_type import ZoneType
 
 
 class WorkoutZone(BaseEntity):

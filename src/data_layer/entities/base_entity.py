@@ -1,6 +1,6 @@
 import datetime
 
-from src.models.utils.common import Common
+from src.data_layer.utils.common import Common
 
 
 class BaseEntity:

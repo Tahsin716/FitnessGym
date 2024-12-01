@@ -1,5 +1,5 @@
-from src.models.entities.member import Member
-from src.models.enum.role import Role
+from src.data_layer.entities.member import Member
+from src.data_layer.enum.role import Role
 
 
 class StaffMember(Member):
