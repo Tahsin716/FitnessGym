@@ -1,26 +1,18 @@
 from dataclasses import dataclass
 import datetime
 
+from src.models.entities.base_entity import BaseEntity
 from src.models.utils.common import Common
 
 
 @dataclass
-class Gym:
+class Gym(BaseEntity):
     def __init__(self, data: dict):
-        self.__id: str = Common.new_guid()
-        self.__create_date: datetime = datetime.datetime.now(datetime.timezone.utc)
+        super().__init__()
         self.__post_code: str = data['post_code']
         self.__address: str = data['address']
         self.__contact_number: str = data['contact_number']
         self.__email: str = data['email']
-
-    @property
-    def id(self) -> str:
-        return self.__id
-
-    @property
-    def create_date(self) -> datetime:
-        return self.__create_date
 
     @property
     def post_code(self) -> str:

@@ -1,26 +1,18 @@
 from dataclasses import dataclass
 import datetime
 
+from src.models.entities.base_entity import BaseEntity
 from src.models.enum.zone_type import ZoneType
 from src.models.utils.common import Common
 
 
 @dataclass
-class WorkoutZone:
+class WorkoutZone(BaseEntity):
     def __init__(self, data : dict):
-        self.__id : str = Common.new_guid()
-        self.__create_date : datetime = datetime.datetime.now(datetime.timezone.utc)
+        super().__init__()
         self.__gym_id : str = data['gym_id']
         self.__zone_type : ZoneType = data['zone_type']
         self.__attendant_id : str = data['attendant_id']
-
-    @property
-    def id(self) -> str:
-        return self.__id
-
-    @property
-    def create_date(self) -> datetime:
-        return self.__create_date
 
     @property
     def gym_id(self) -> str:
