@@ -87,8 +87,6 @@ class GymRepository:
             logging.error(f"SecurityException occurred while retrieving gym: {str(e)}")
             return False, str(e), None
 
-
-
     def remove_gym(self, _id : str):
         del self.__gyms[_id]
 
