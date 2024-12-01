@@ -5,3 +5,4 @@ class Role(Enum):
     TRAINER = "trainer"
     MANAGER = "manager"
     ATTENDANT = "attendant"
+    NUTRITIONIST = "nutritionist"

@@ -1,10 +1,7 @@
-from dataclasses import dataclass
-
 from src.models.entities.base_entity import BaseEntity
 from src.models.enum.zone_type import ZoneType
 
 
-@dataclass
 class WorkoutZone(BaseEntity):
     def __init__(self, data : dict):
         super().__init__()
