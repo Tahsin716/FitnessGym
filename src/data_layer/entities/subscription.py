@@ -1,14 +1,16 @@
 
 from src.data_layer.entities.base_entity import BaseEntity
+from src.data_layer.enum.payment_method import PaymentMethod
+from src.data_layer.enum.subscription_plan import SubscriptionPlan
 
 
 class Subscription(BaseEntity):
     def __init__(self, data : dict):
         super().__init__()
         self.__member_id : str = data['member_id']
-        self.__subscription_type = data['subscription_type']
-        self.__monthly_rate : float = data['monthly_rate']
-        self.__payment_method = data['payment_method']
+        self.__subscription_type : SubscriptionPlan = data['subscription_type']
+        self.__monthly_rate : float = self.__get_monthly_rate()
+        self.__payment_method : PaymentMethod = data['payment_method']
         self.__discount : float = data['discount']
         self.__loyalty_points : int = 0
 
@@ -17,7 +19,7 @@ class Subscription(BaseEntity):
         return self.__member_id
 
     @property
-    def subscription_type(self) -> str:
+    def subscription_type(self) -> SubscriptionPlan:
         return self.__subscription_type
 
     @property
@@ -25,7 +27,7 @@ class Subscription(BaseEntity):
         return self.__monthly_rate
 
     @property
-    def payment_method(self) -> str:
+    def payment_method(self) -> PaymentMethod:
         return self.__payment_method
 
     @property
@@ -37,15 +39,12 @@ class Subscription(BaseEntity):
         return self.__loyalty_points
 
     @subscription_type.setter
-    def subscription_type(self, value: str):
+    def subscription_type(self, value: SubscriptionPlan):
         self.__subscription_type = value
-
-    @monthly_rate.setter
-    def monthly_rate(self, value: float):
-        self.__monthly_rate = value
+        self.__monthly_rate = self.__get_monthly_rate()
 
     @payment_method.setter
-    def payment_method(self, value: str):
+    def payment_method(self, value: PaymentMethod):
         self.__payment_method = value
 
     @discount.setter
@@ -55,4 +54,12 @@ class Subscription(BaseEntity):
     @loyalty_points.setter
     def loyalty_points(self, value: int):
         self.__loyalty_points = value
+
+    def __get_monthly_rate(self) -> float:
+        if self.__subscription_type == SubscriptionPlan.MONTHLY:
+            return 14.0
+        elif self.__subscription_type == SubscriptionPlan.QUARTERLY:
+            return 12.0
+        else:
+            return 10.0
 
