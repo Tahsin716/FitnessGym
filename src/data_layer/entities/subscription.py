@@ -12,6 +12,7 @@ class Subscription(BaseEntity):
         self.__monthly_rate : float = self.__get_monthly_rate()
         self.__payment_method : PaymentMethod = data['payment_method']
         self.__discount : float = data['discount']
+        self.__active : bool = True
         self.__loyalty_points : int = 0
 
     @property
@@ -38,6 +39,10 @@ class Subscription(BaseEntity):
     def loyalty_points(self) -> int:
         return self.__loyalty_points
 
+    @property
+    def active(self) -> bool:
+        return self.__active
+
     @subscription_plan.setter
     def subscription_plan(self, value: SubscriptionPlan):
         self.__subscription_plan = value
@@ -54,6 +59,10 @@ class Subscription(BaseEntity):
     @loyalty_points.setter
     def loyalty_points(self, value: int):
         self.__loyalty_points = value
+
+    @active.setter
+    def active(self, value : bool):
+        self.__active = value
 
     def __get_monthly_rate(self) -> float:
         if self.__subscription_plan == SubscriptionPlan.MONTHLY:
