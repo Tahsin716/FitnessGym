@@ -10,7 +10,7 @@ class GymService:
     def __init__(self):
         self.gym_repository = GymRepository()
 
-    def create_gym(self, data : dict) -> Tuple[bool, str, Gym | None]:
+    def create(self, data : dict) -> Tuple[bool, str, Gym | None]:
         try:
             if not data:
                 raise SecurityException("data cannot be empty")
@@ -20,7 +20,7 @@ class GymService:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")
 
-            gym = self.gym_repository.create_gym(data)
+            gym = self.gym_repository.create(data)
 
             return True, "", gym
         except SecurityException as e:
@@ -30,7 +30,7 @@ class GymService:
             logging.error(f"Error occurred while saving gym: {str(e)}")
             return False, str(e), None
 
-    def update_gym(self, _id : str, data : dict) -> Tuple[bool, str, Gym | None]:
+    def update(self, _id : str, data : dict) -> Tuple[bool, str, Gym | None]:
         try:
             if not data:
                 raise SecurityException("data cannot be empty")
@@ -43,7 +43,7 @@ class GymService:
             if self.gym_repository.get_gym_by_id(_id) is None:
                 raise SecurityException("no gym exists with given id")
 
-            gym = self.gym_repository.update_gym(_id, data)
+            gym = self.gym_repository.update(_id, data)
 
             return True, "", gym
         except SecurityException as e:
@@ -68,6 +68,6 @@ class GymService:
             logging.error(f"SecurityException occurred while retrieving gym: {str(e)}")
             return False, str(e), None
 
-    def remove_gym(self, _id : str):
-        self.gym_repository.remove_gym(_id)
+    def delete(self, _id : str):
+        self.gym_repository.delete(_id)
 
