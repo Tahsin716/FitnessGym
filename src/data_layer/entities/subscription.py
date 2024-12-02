@@ -8,7 +8,7 @@ class Subscription(BaseEntity):
     def __init__(self, data : dict):
         super().__init__()
         self.__member_id : str = data['member_id']
-        self.__subscription_type : SubscriptionPlan = data['subscription_type']
+        self.__subscription_plan : SubscriptionPlan = data['subscription_type']
         self.__monthly_rate : float = self.__get_monthly_rate()
         self.__payment_method : PaymentMethod = data['payment_method']
         self.__discount : float = data['discount']
@@ -19,8 +19,8 @@ class Subscription(BaseEntity):
         return self.__member_id
 
     @property
-    def subscription_type(self) -> SubscriptionPlan:
-        return self.__subscription_type
+    def subscription_plan(self) -> SubscriptionPlan:
+        return self.__subscription_plan
 
     @property
     def monthly_rate(self) -> float:
@@ -38,9 +38,9 @@ class Subscription(BaseEntity):
     def loyalty_points(self) -> int:
         return self.__loyalty_points
 
-    @subscription_type.setter
-    def subscription_type(self, value: SubscriptionPlan):
-        self.__subscription_type = value
+    @subscription_plan.setter
+    def subscription_plan(self, value: SubscriptionPlan):
+        self.__subscription_plan = value
         self.__monthly_rate = self.__get_monthly_rate()
 
     @payment_method.setter
@@ -56,9 +56,9 @@ class Subscription(BaseEntity):
         self.__loyalty_points = value
 
     def __get_monthly_rate(self) -> float:
-        if self.__subscription_type == SubscriptionPlan.MONTHLY:
+        if self.__subscription_plan == SubscriptionPlan.MONTHLY:
             return 14.0
-        elif self.__subscription_type == SubscriptionPlan.QUARTERLY:
+        elif self.__subscription_plan == SubscriptionPlan.QUARTERLY:
             return 12.0
         else:
             return 10.0

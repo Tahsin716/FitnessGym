@@ -10,3 +10,19 @@ class Payment(BaseEntity):
         self.__payment_method : PaymentMethod = data['payment_method']
         self.__subscription_plan : SubscriptionPlan = data['subscription_plan']
         self.__amount : float = data['amount']
+
+    @property
+    def member_id(self) -> str:
+        return self.__member_id
+
+    @property
+    def payment_method(self) -> PaymentMethod:
+        return self.__payment_method
+
+    @property
+    def subscription_plan(self) -> SubscriptionPlan:
+        return self.__subscription_plan
+
+    @property
+    def amount(self) -> float:
+        return self.__amount
