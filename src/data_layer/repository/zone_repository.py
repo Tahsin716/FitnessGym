@@ -24,10 +24,10 @@ class ZoneRepository:
         zone.attendant_id = data['attendant_id']
         return zone
 
-    def get_all_gyms(self) -> list[WorkoutZone]:
+    def get_all_zones(self) -> list[WorkoutZone]:
         return list(self.__zones.values())
 
-    def get_gym_by_id(self, _id: str) -> WorkoutZone:
+    def get_zone_by_id(self, _id: str) -> WorkoutZone:
         return self.__zones.get(_id)
 
     def remove(self, _id: str):
