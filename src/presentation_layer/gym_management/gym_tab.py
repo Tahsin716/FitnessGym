@@ -1,7 +1,8 @@
-from tkinter import ttk
+from tkinter import ttk, messagebox
 
 from src.business_layer.services.gym_service import GymService
 from src.presentation_layer.gym_management.create_gym_form import CreateGymFrom
+from src.presentation_layer.gym_management.update_gym_form import UpdateGymForm
 
 
 class GymTab(ttk.Frame):
@@ -51,7 +52,15 @@ class GymTab(ttk.Frame):
         CreateGymFrom(self, self.gym_service, self.refresh_data)
 
     def update_gym(self):
-        pass
+        selected_item = self.tree.selection()
+
+        if not selected_item:
+            messagebox.showwarning("Warning", "Please select a gym to update")
+            return
+
+        data = self.tree.item(selected_item[0], 'values')
+        UpdateGymForm(self, self.gym_service, data, self.refresh_data)
+
 
     def delete_gym(self):
         pass

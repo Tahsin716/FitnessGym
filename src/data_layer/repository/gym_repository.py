@@ -21,7 +21,7 @@ class GymRepository:
         gym = self.__gyms[_id]
         gym.post_code = data['post_code']
         gym.address = data['address']
-        gym.contact_number = data['contact_number']
+        gym.contact_number = data['phone_number']
         gym.email = data['email']
         return gym
 
