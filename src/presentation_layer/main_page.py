@@ -1,5 +1,8 @@
 from tkinter import ttk
 
+from src.presentation_layer.gym_management.gym_tab import GymTab
+
+
 class MainPage(ttk.Frame):
     def __init__(self, parent, controller):
         ttk.Frame.__init__(self, parent)
@@ -8,7 +11,7 @@ class MainPage(ttk.Frame):
         self.notebook = ttk.Notebook(self)
 
         self.tabs = {
-            #"Users": UserManagementTab(self.notebook),
+            "Gyms": GymTab(self.notebook),
             #"Expenses": ExpensesTab(self.notebook),
             #"Inventory": InventoryManagementTab(self.notebook),
             #"Sales": SalesTab(self.notebook),

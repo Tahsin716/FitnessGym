@@ -15,7 +15,7 @@ class GymService:
             if not data:
                 raise SecurityException("data cannot be empty")
 
-            required_fields = ['post_code', 'address', 'contact_number', 'email']
+            required_fields = ['post_code', 'address', 'phone_number', 'email']
             for field in required_fields:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")
