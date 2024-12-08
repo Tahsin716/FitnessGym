@@ -1,9 +1,13 @@
 from tkinter import ttk
 
+from src.business_layer.services.gym_service import GymService
+from src.presentation_layer.gym_management.create_gym_form import CreateGymFrom
+
 
 class GymTab(ttk.Frame):
     def __init__(self, parent):
         ttk.Frame.__init__(self, parent)
+        self.gym_service = GymService()
 
         self.action_frame = ttk.Frame(self)
 
@@ -34,8 +38,17 @@ class GymTab(ttk.Frame):
         self.tree.pack(side="left", fill="both", expand=True)
         scrollbar.pack(side="right", fill="y")
 
+    def refresh_data(self):
+        gyms = self.gym_service.get_all_gyms()
+
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+
+        for gym in gyms:
+            self.tree.insert('', 'end', values=(gym.id, gym.location, gym.address, gym.post_code, gym.phone_number, gym.email))
+
     def create_gym(self):
-        pass
+        CreateGymFrom(self, self.gym_service, self.refresh_data)
 
     def update_gym(self):
         pass
