@@ -1,0 +1,110 @@
+{
+  "Gyms": [
+    {
+      "_id": "17924113-8469-4205-be31-160306db6c4d",
+      "create_date": "2024-12-08",
+      "location": "Downtown Fitness Center",
+      "post_code": "DT12 3AB",
+      "address": "123 Main Street, Downtown",
+      "phone_number": "123-456-7890",
+      "email": "info@downtownfitness.com"
+    },
+    {
+      "_id": "dfd42806-6748-4d56-8dd0-e405a8625efd",
+      "create_date": "2024-12-08",
+      "location": "Uptown Wellness Hub",
+      "post_code": "UT45 6CD",
+      "address": "456 Uptown Avenue, Uptown",
+      "phone_number": "987-654-3210",
+      "email": "contact@uptownwellness.com"
+    },
+    {
+      "_id": "566610be-ab50-44cc-bd7f-0fffec20bc5a",
+      "create_date": "2024-12-08",
+      "location": "Westside Athletic Club",
+      "post_code": "WS78 9EF",
+      "address": "789 Westside Drive, Westside",
+      "phone_number": "555-987-1234",
+      "email": "support@westsideathletics.com"
+    },
+    {
+      "_id": "6734ff4f-2f5d-4c2a-af56-774a7898da23",
+      "create_date": "2024-12-08",
+      "location": "Eastside Gymnasium",
+      "post_code": "ES34 5GH",
+      "address": "321 Eastside Street, Eastside",
+      "phone_number": "555-321-4321",
+      "email": "hello@eastsidegym.com"
+    },
+    {
+      "_id": "920f66d6-b7d2-443d-958b-9e58820123ac",
+      "create_date": "2024-12-08",
+      "location": "Central Fitness Hub",
+      "post_code": "CF22 7HI",
+      "address": "456 Central Avenue, City Center",
+      "phone_number": "555-456-6543",
+      "email": "contact@centralfitness.com"
+    },
+    {
+      "_id": "a19be7df-25cc-4620-9f66-c5b0bcbc4b83",
+      "create_date": "2024-12-08",
+      "location": "Northside Strength Center",
+      "post_code": "NS91 2JK",
+      "address": "654 Northside Lane, Northside",
+      "phone_number": "555-789-8765",
+      "email": "info@northsidestrength.com"
+    }
+  ],
+  "StaffMembers": [
+    {
+      "_id": "f6a8a2c8-1234-4dbb-88a1-9e4567c8eabc",
+      "create_date": "2023-01-15",
+      "first_name": "John",
+      "last_name": "Doe",
+      "email": "john.doe@example.com",
+      "phone_number": "123-456-7890",
+      "role": "manager",
+      "gym_id": "17924113-8469-4205-be31-160306db6c4d"
+    },
+    {
+      "_id": "a5d3e78d-5678-4abc-90e7-6cde8901f123",
+      "create_date": "2023-03-22",
+      "first_name": "Jane",
+      "last_name": "Smith",
+      "email": "jane.smith@example.com",
+      "phone_number": "987-654-3210",
+      "role": "trainer",
+      "gym_id": "566610be-ab50-44cc-bd7f-0fffec20bc5a"
+    },
+    {
+      "_id": "b7f9c3ab-9012-4ef0-83c4-7d890e12c345",
+      "create_date": "2023-06-10",
+      "first_name": "Emily",
+      "last_name": "Johnson",
+      "email": "emily.johnson@example.com",
+      "phone_number": "555-987-6543",
+      "role": "attendant",
+      "gym_id": "566610be-ab50-44cc-bd7f-0fffec20bc5a"
+    },
+    {
+      "_id": "d8e7a9bc-3456-4f12-98b7-6f01a234c678",
+      "create_date": "2023-08-05",
+      "first_name": "Michael",
+      "last_name": "Brown",
+      "email": "michael.brown@example.com",
+      "phone_number": "555-321-4321",
+      "role": "nutritionist",
+      "gym_id": "566610be-ab50-44cc-bd7f-0fffec20bc5a"
+    },
+    {
+      "_id": "e4b7c8a1-7890-4abc-91f2-3cde5f67a890",
+      "create_date": "2023-09-18",
+      "first_name": "Sarah",
+      "last_name": "Davis",
+      "email": "sarah.davis@example.com",
+      "phone_number": "555-456-7890",
+      "role": "trainer",
+      "gym_id": "566610be-ab50-44cc-bd7f-0fffec20bc5a"
+    }
+  ]
+}

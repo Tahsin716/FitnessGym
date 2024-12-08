@@ -7,7 +7,7 @@ from src.data_layer.enum.appointment_type import AppointmentType
 
 class Appointment(BaseEntity):
     def __init__(self, data : dict):
-        super().__init__()
+        super().__init__(data['_id'], data['create_date'])
         self.__member_id : str = data['member_id']
         self.__staff_id : str = data['staff_id']
         self.__appointment_type : AppointmentType = data['appointment_type']

@@ -3,7 +3,7 @@ from src.data_layer.entities.base_entity import BaseEntity
 
 class Attendance(BaseEntity):
     def __init__(self, data : dict):
-        super().__init__()
+        super().__init__(data['_id'], data['create_date'])
         self.__gym_id : str = data['gym_id']
         self.__workout_zone_id : str = data['workout_zone_id']
         self.__checkin_time : str = data['checkin_time']

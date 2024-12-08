@@ -6,7 +6,7 @@ from src.data_layer.entities.base_entity import BaseEntity
 @dataclass
 class Gym(BaseEntity):
     def __init__(self, data: dict):
-        super().__init__()
+        super().__init__(data['_id'], data['create_date'])
         self.__location : str = data['location']
         self.__post_code: str = data['post_code']
         self.__address: str = data['address']
