@@ -3,6 +3,7 @@ from tkinter import ttk, messagebox
 from src.business_layer.services.gym_service import GymService
 from src.business_layer.services.staff_member_service import StaffMemberService
 from src.presentation_layer.staff_management.create_staff_form import CreateStaffMemberForm
+from src.presentation_layer.staff_management.update_staff_form import UpdateStaffMemberForm
 
 
 class StaffMemberTab(ttk.Frame):
@@ -73,7 +74,7 @@ class StaffMemberTab(ttk.Frame):
             return
 
         data = self.tree.item(selected_item[0], 'values')
-        #UpdateStaffMemberForm(self, self.staff_member_service, data, self.refresh_data)
+        UpdateStaffMemberForm(self, self.staff_member_service, self.gym_service , data, self.refresh_data)
 
     def delete_staff_member(self):
         selected_item = self.tree.selection()
