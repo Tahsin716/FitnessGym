@@ -16,7 +16,7 @@ class StaffMemberService:
             if not data:
                 raise SecurityException("Data cannot be empty")
 
-            required_fields = ['first_name', 'last_name', 'email', 'phone_number', 'role']
+            required_fields = ['first_name', 'last_name', 'email', 'phone_number', 'role', 'gym_id']
             for field in required_fields:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")
@@ -38,7 +38,7 @@ class StaffMemberService:
             if not data:
                 raise SecurityException("Data cannot be empty")
 
-            required_fields = ['first_name', 'last_name', 'email', 'phone_number']
+            required_fields = ['first_name', 'last_name', 'email', 'phone_number', 'role', 'gym_id']
             for field in required_fields:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")

@@ -22,6 +22,8 @@ class StaffMemberRepository:
         staff_member.last_name = data['last_name']
         staff_member.email = data['email']
         staff_member.phone_number = data['phone_number']
+        staff_member.role = data['role']
+        staff_member.gym_id = data['gym_id']
         return staff_member
 
     def get_all(self) -> List[StaffMember]:
