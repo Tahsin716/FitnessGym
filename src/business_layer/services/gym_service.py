@@ -68,6 +68,11 @@ class GymService:
             logging.error(f"SecurityException occurred while retrieving gym: {str(e)}")
             return False, str(e), None
 
-    def delete(self, _id : str):
-        self.gym_repository.delete(_id)
+    def delete(self, _id : str) -> Tuple[bool, str]:
+        try:
+            self.gym_repository.delete(_id)
+            return True, ""
+        except Exception as e:
+            logging.error(f"Error occurred while deleting gym, {str(e)}")
+            return False, str(e)
 

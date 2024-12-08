@@ -63,4 +63,19 @@ class GymTab(ttk.Frame):
 
 
     def delete_gym(self):
-        pass
+        selected_item = self.tree.selection()
+        if not selected_item:
+            messagebox.showwarning("Warning", "Please select a gym to delete")
+            return
+
+        user_data = self.tree.item(selected_item[0], 'values')
+        _id = user_data[0]
+
+        if messagebox.askyesno("Confirm", "Are you sure you want to delete this gym?"):
+            success, message = self.gym_service.delete(_id)
+
+            if not success:
+                messagebox.showerror("Error", message)
+            else:
+                messagebox.showinfo("Success", "Gym successfully deleted")
+                self.refresh_data()
