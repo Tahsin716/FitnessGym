@@ -23,7 +23,7 @@ class ZoneService:
 
             if not isinstance(data['zone_type'], ZoneType):
                 raise SecurityException("Invalid zone type")
-
+            print(data)
             zone = self.zone_repository.create(data)
 
             return True, "", zone

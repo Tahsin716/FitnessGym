@@ -4,7 +4,10 @@ from src.data_layer.enum.zone_type import ZoneType
 
 class WorkoutZone(BaseEntity):
     def __init__(self, data : dict):
-        super().__init__(data['_id'], data['create_date'])
+        _id = data.get('_id', None)
+        create_date = data.get('create_date', None)
+        super().__init__(_id, create_date)
+
         self.__gym_id : str = data['gym_id']
         self.__zone_type : ZoneType = data['zone_type']
         self.__attendant_id : str = data['attendant_id']

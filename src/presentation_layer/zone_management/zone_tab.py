@@ -3,6 +3,7 @@ from tkinter import ttk
 from src.business_layer.services.gym_service import GymService
 from src.business_layer.services.staff_member_service import StaffMemberService
 from src.business_layer.services.zone_service import ZoneService
+from src.presentation_layer.zone_management.create_zone_form import CreateZoneForm
 
 
 class ZoneTab(ttk.Frame):
@@ -55,7 +56,7 @@ class ZoneTab(ttk.Frame):
 
 
     def create_zone(self):
-        pass
+        CreateZoneForm(self, self.gym_service, self.staff_member_service, self.zone_service, self.refresh_data)
 
     def update_zone(self):
         pass

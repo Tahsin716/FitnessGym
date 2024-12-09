@@ -3,7 +3,10 @@ from src.data_layer.entities.base_entity import BaseEntity
 
 class Member(BaseEntity):
     def __init__(self, data : dict):
-        super().__init__(data['_id'], data['create_date'])
+        _id = data.get('_id', None)
+        create_date = data.get('create_date', None)
+        super().__init__(_id, create_date)
+
         self.__first_name : str = data['first_name']
         self.__last_name : str = data['last_name']
         self.__email : str = data['email']

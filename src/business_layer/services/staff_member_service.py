@@ -55,8 +55,16 @@ class StaffMemberService:
             logging.error(f"Error occurred while updating staff member: {str(e)}")
             return False, str(e), None
 
-    def get_all(self) -> List[StaffMember]:
+    def get_all(self) -> list[StaffMember]:
         return self.staff_member_repository.get_all()
+
+    def get_all_by_role(self, role : Role ) -> list[StaffMember]:
+        staffs = self.get_all()
+        return [staff for staff in staffs if staff.role == role]
+
+    def get_all_by_role_and_gym(self, role : Role, gym_id : str) -> list[StaffMember]:
+        staffs = self.get_all()
+        return [staff for staff in staffs if staff.role == role and staff.gym_id == gym_id]
 
     def get_by_id(self, _id: str) -> Tuple[bool, str, StaffMember | None]:
         try:

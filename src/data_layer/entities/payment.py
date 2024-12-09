@@ -5,7 +5,10 @@ from src.data_layer.enum.subscription_plan import SubscriptionPlan
 
 class Payment(BaseEntity):
     def __init__(self, data : dict):
-        super().__init__(data['_id'], data['create_date'])
+        _id = data.get('_id', None)
+        create_date = data.get('create_date', None)
+        super().__init__(_id, create_date)
+
         self.__member_id : str = data['member_id']
         self.__payment_method : PaymentMethod = data['payment_method']
         self.__subscription_plan : SubscriptionPlan = data['subscription_plan']
