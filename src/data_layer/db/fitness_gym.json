@@ -1,7 +1,7 @@
 {
   "Gyms": [
     {
-      "_id": "17924113-8469-4205-be31-160306db6c4d",
+      "_id": "17924113",
       "create_date": "2024-12-08",
       "location": "Downtown Fitness Center",
       "post_code": "DT12 3AB",
@@ -10,7 +10,7 @@
       "email": "info@downtownfitness.com"
     },
     {
-      "_id": "dfd42806-6748-4d56-8dd0-e405a8625efd",
+      "_id": "dfd42806",
       "create_date": "2024-12-08",
       "location": "Uptown Wellness Hub",
       "post_code": "UT45 6CD",
@@ -19,7 +19,7 @@
       "email": "contact@uptownwellness.com"
     },
     {
-      "_id": "566610be-ab50-44cc-bd7f-0fffec20bc5a",
+      "_id": "566610be",
       "create_date": "2024-12-08",
       "location": "Westside Athletic Club",
       "post_code": "WS78 9EF",
@@ -28,7 +28,7 @@
       "email": "support@westsideathletics.com"
     },
     {
-      "_id": "6734ff4f-2f5d-4c2a-af56-774a7898da23",
+      "_id": "6734ff4f",
       "create_date": "2024-12-08",
       "location": "Eastside Gymnasium",
       "post_code": "ES34 5GH",
@@ -37,7 +37,7 @@
       "email": "hello@eastsidegym.com"
     },
     {
-      "_id": "920f66d6-b7d2-443d-958b-9e58820123ac",
+      "_id": "920f66d6",
       "create_date": "2024-12-08",
       "location": "Central Fitness Hub",
       "post_code": "CF22 7HI",
@@ -46,7 +46,7 @@
       "email": "contact@centralfitness.com"
     },
     {
-      "_id": "a19be7df-25cc-4620-9f66-c5b0bcbc4b83",
+      "_id": "a19be7df",
       "create_date": "2024-12-08",
       "location": "Northside Strength Center",
       "post_code": "NS91 2JK",
@@ -57,104 +57,104 @@
   ],
   "StaffMembers": [
     {
-      "_id": "f6a8a2c8-1234-4dbb-88a1-9e4567c8eabc",
+      "_id": "f6a8a2c8",
       "create_date": "2023-01-15",
       "first_name": "John",
       "last_name": "Doe",
       "email": "john.doe@example.com",
       "phone_number": "123-456-7890",
       "role": "Manager",
-      "gym_id": "17924113-8469-4205-be31-160306db6c4d"
+      "gym_id": "17924113"
     },
     {
-      "_id": "89a8a2c8-1234-4dbb-88a1-9e4567c8eabd",
+      "_id": "89a8a2c8",
       "create_date": "2023-01-15",
       "first_name": "John",
       "last_name": "Travis",
       "email": "john.travis@example.com",
       "phone_number": "546-456-7890",
       "role": "Attendant",
-      "gym_id": "17924113-8469-4205-be31-160306db6c4d"
+      "gym_id": "17924113"
     },
     {
-      "_id": "4b8f3c9e-1234-4dcb-88f5-9e7867c8eaef",
+      "_id": "4b8f3c9e",
       "create_date": "2023-02-01",
       "first_name": "Sophia",
       "last_name": "Martinez",
       "email": "sophia.martinez@example.com",
       "phone_number": "546-123-4567",
       "role": "Attendant",
-      "gym_id": "17924113-8469-4205-be31-160306db6c4d"
+      "gym_id": "17924113"
     },
     {
-      "_id": "6198a2c8-1234-4dbb-88a1-9e4567c8eabc",
+      "_id": "6198a2c8",
       "create_date": "2023-01-15",
       "first_name": "Brown",
       "last_name": "Boyle",
       "email": "brown.boyle@example.com",
       "phone_number": "456-125-7890",
       "role": "Attendant",
-      "gym_id": "dfd42806-6748-4d56-8dd0-e405a8625efd"
+      "gym_id": "dfd42806"
     },
     {
-      "_id": "5b8f4c9e-1234-4dab-88e5-9e7867c8ebaf",
+      "_id": "5b8f4c9e",
       "create_date": "2023-03-15",
       "first_name": "Liam",
       "last_name": "Scott",
       "email": "liam.scott@example.com",
       "phone_number": "456-789-0123",
       "role": "Attendant",
-      "gym_id": "dfd42806-6748-4d56-8dd0-e405a8625efd"
+      "gym_id": "dfd42806"
     },
     {
-      "_id": "d8e7a9bc-3456-4f12-98b7-6f01a234c678",
+      "_id": "d8e7a9bc",
       "create_date": "2023-08-05",
       "first_name": "Michael",
       "last_name": "Brown",
       "email": "michael.brown@example.com",
       "phone_number": "555-321-4321",
       "role": "Nutritionist",
-      "gym_id": "566610be-ab50-44cc-bd7f-0fffec20bc5a"
+      "gym_id": "566610be"
     },
     {
-      "_id": "5b2a9c7f-1234-4abc-91f3-7c2e5f67a890",
+      "_id": "5b2a9c7f",
       "create_date": "2023-07-05",
       "first_name": "Noah",
       "last_name": "Green",
       "email": "noah.green@example.com",
       "phone_number": "555-654-3210",
       "role": "Attendant",
-      "gym_id": "566610be-ab50-44cc-bd7f-0fffec20bc5a"
+      "gym_id": "566610be"
     }
   ],
   "Zones": [
     {
-      "_id": "a1b2c3d4-e5f6-7890-a123-4567890abcdef",
+      "_id": "a1b2c3d4",
       "create_date": "2024-12-09",
-      "gym_id": "17924113-8469-4205-be31-160306db6c4d",
+      "gym_id": "17924113",
       "zone_type": "Cardio",
-      "attendant_id": "89a8a2c8-1234-4dbb-88a1-9e4567c8eabd"
+      "attendant_id": "89a8a2c8"
     },
     {
-      "_id": "b2c3d4e5-f6a1-1234-b789-4567890fedcb",
+      "_id": "b2c3d4e5",
       "create_date": "2024-12-09",
-      "gym_id": "17924113-8469-4205-be31-160306db6c4d",
+      "gym_id": "17924113",
       "zone_type": "Strength",
-      "attendant_id": "4b8f3c9e-1234-4dcb-88f5-9e7867c8eaef"
+      "attendant_id": "4b8f3c9e"
     },
     {
-      "_id": "c3d4e5f6-a1b2-5678-c123-4567890fedcb",
+      "_id": "c3d4e5f6",
       "create_date": "2024-12-09",
-      "gym_id": "dfd42806-6748-4d56-8dd0-e405a8625efd",
+      "gym_id": "dfd42806",
       "zone_type": "Functional Training",
-      "attendant_id": "6198a2c8-1234-4dbb-88a1-9e4567c8eabc"
+      "attendant_id": "6198a2c8"
     },
     {
-      "_id": "d4e5f6a1-b2c3-7890-d123-4567890abcde",
+      "_id": "d4e5f6a1",
       "create_date": "2024-12-09",
-      "gym_id": "566610be-ab50-44cc-bd7f-0fffec20bc5a",
+      "gym_id": "566610be",
       "zone_type": "Yoga",
-      "attendant_id": "5b2a9c7f-1234-4abc-91f3-7c2e5f67a890"
+      "attendant_id": "5b2a9c7f"
     }
   ]
 }
