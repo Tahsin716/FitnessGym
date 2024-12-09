@@ -15,6 +15,10 @@ class GymMember(Member):
     def membership_type(self) -> MembershipType:
         return self.__membership_type
 
+    @membership_type.setter
+    def membership_type(self, value : MembershipType):
+        self.__membership_type = value
+
     @property
     def height(self) -> float:
         return self.__height

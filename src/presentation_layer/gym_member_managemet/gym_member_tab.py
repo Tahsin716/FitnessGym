@@ -2,6 +2,7 @@ from tkinter import ttk, messagebox
 
 from src.business_layer.services.gym_member_service import GymMemberService
 from src.presentation_layer.gym_member_managemet.create_gym_member_form import CreateGymMemberForm
+from src.presentation_layer.gym_member_managemet.update_gym_member_form import UpdateGymMemberForm
 
 
 class GymMemberTab(ttk.Frame):
@@ -87,7 +88,9 @@ class GymMemberTab(ttk.Frame):
         if not selected_item:
             messagebox.showwarning("Warning", "Please select a member to update")
             return
-        pass
+
+        data = self.tree.item(selected_item[0], 'values')
+        UpdateGymMemberForm(self, self.gym_member_service, data, self.refresh_data)
 
     def delete_member(self):
         selected_item = self.tree.selection()
