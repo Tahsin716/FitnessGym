@@ -9,20 +9,19 @@ from src.presentation_layer.staff_management.update_staff_form import UpdateStaf
 class StaffMemberTab(ttk.Frame):
     def __init__(self, parent):
         ttk.Frame.__init__(self, parent)
+
+        # Configure grid layout
+        self.grid_rowconfigure(1, weight=1)
+        self.grid_columnconfigure(0, weight=1)
+
         self.staff_member_service = StaffMemberService()
         self.gym_service = GymService()
 
+        # Action Frame
         self.action_frame = ttk.Frame(self)
+        self.action_frame.grid(row=0, column=0, sticky='ew', padx=10, pady=5)
 
-        self.tree = ttk.Treeview(self, columns=('ID', 'First Name', 'Last Name', 'Email', 'Phone Number', 'Role', 'Gym Location'), show='headings')
-        self.tree.heading('ID', text='ID')
-        self.tree.heading('First Name', text='First Name')
-        self.tree.heading('Last Name', text='Last Name')
-        self.tree.heading('Email', text='Email')
-        self.tree.heading('Phone Number', text='Phone Number')
-        self.tree.heading('Role', text='Role')
-        self.tree.heading('Gym Location', text='Gym Location')
-
+        # Buttons
         self.create_button = ttk.Button(self.action_frame, text="Create Staff Member", command=self.create_staff_member)
         self.create_button.pack(side='left', padx=5)
 
@@ -32,15 +31,34 @@ class StaffMemberTab(ttk.Frame):
         self.delete_button = ttk.Button(self.action_frame, text="Delete Staff Member", command=self.delete_staff_member)
         self.delete_button.pack(side='left', padx=5)
 
-        self.action_frame.pack(fill='x', pady=5)
+        # Treeview with Scrollbar
+        self.tree = ttk.Treeview(self, columns=(
+            'ID', 'First Name', 'Last Name', 'Email',
+            'Phone Number', 'Role', 'Gym Location'
+        ), show='headings')
 
-        self.tree.pack(expand=True, fill='both', padx=10, pady=10)
+        # Configure column headings and widths
+        columns_config = [
+            ('ID', 50),
+            ('First Name', 100),
+            ('Last Name', 100),
+            ('Email', 200),
+            ('Phone Number', 120),
+            ('Role', 100),
+            ('Gym Location', 150)
+        ]
 
+        for col, width in columns_config:
+            self.tree.heading(col, text=col)
+            self.tree.column(col, width=width, anchor='center', stretch=True)
+
+        # Scrollbar
         scrollbar = ttk.Scrollbar(self, orient="vertical", command=self.tree.yview)
         self.tree.configure(yscrollcommand=scrollbar.set)
 
-        self.tree.pack(side="left", fill="both", expand=True)
-        scrollbar.pack(side="right", fill="y")
+        # Grid placement of Treeview and Scrollbar
+        self.tree.grid(row=1, column=0, sticky='nsew', padx=10, pady=10)
+        scrollbar.grid(row=1, column=1, sticky='ns')
 
         self.refresh_data()
 
