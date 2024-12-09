@@ -1,9 +1,10 @@
-from tkinter import ttk
+from tkinter import ttk, messagebox
 
 from src.business_layer.services.gym_service import GymService
 from src.business_layer.services.staff_member_service import StaffMemberService
 from src.business_layer.services.zone_service import ZoneService
 from src.presentation_layer.zone_management.create_zone_form import CreateZoneForm
+from src.presentation_layer.zone_management.update_zone_form import UpdateZoneForm
 
 
 class ZoneTab(ttk.Frame):
@@ -59,7 +60,49 @@ class ZoneTab(ttk.Frame):
         CreateZoneForm(self, self.gym_service, self.staff_member_service, self.zone_service, self.refresh_data)
 
     def update_zone(self):
-        pass
+        # Get selected zone
+        selected_item = self.tree.selection()
+        if not selected_item:
+            messagebox.showwarning("Warning", "Please select a zone to update")
+            return
+
+        # Get zone ID from selected item
+        zone_data = self.tree.item(selected_item[0], 'values')
+        zone_id = zone_data[0]
+
+        # Retrieve full zone details
+        success, message, zone = self.zone_service.get_zone_by_id(zone_id)
+        if not success:
+            messagebox.showerror("Error", message)
+            return
+
+        # Open update form
+        UpdateZoneForm(
+            self,
+            zone,
+            self.gym_service,
+            self.staff_member_service,
+            self.zone_service,
+            self.refresh_data
+        )
 
     def delete_zone(self):
-        pass
+        selected_item = self.tree.selection()
+        if not selected_item:
+            messagebox.showwarning("Warning", "Please select a zone to delete")
+            return
+
+        # Get zone ID from selected item
+        zone_data = self.tree.item(selected_item[0], 'values')
+        zone_id = zone_data[0]
+
+        if messagebox.askyesno("Confirm", "Are you sure you want to delete the zone"):
+            success, message = self.zone_service.delete(zone_id)
+
+            if not success:
+                messagebox.showerror("Error", message)
+            else:
+                messagebox.showinfo("Success", "Successfully deleted zone")
+                self.refresh_data()
+
+
