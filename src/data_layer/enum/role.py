@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class Role(Enum):
-    TRAINER = "trainer"
-    MANAGER = "manager"
-    ATTENDANT = "attendant"
-    NUTRITIONIST = "nutritionist"
+    TRAINER = "Trainer"
+    MANAGER = "Manager"
+    ATTENDANT = "Attendant"
+    NUTRITIONIST = "Nutritionist"

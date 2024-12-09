@@ -63,28 +63,48 @@
       "last_name": "Doe",
       "email": "john.doe@example.com",
       "phone_number": "123-456-7890",
-      "role": "manager",
+      "role": "Manager",
       "gym_id": "17924113-8469-4205-be31-160306db6c4d"
     },
     {
-      "_id": "a5d3e78d-5678-4abc-90e7-6cde8901f123",
-      "create_date": "2023-03-22",
-      "first_name": "Jane",
-      "last_name": "Smith",
-      "email": "jane.smith@example.com",
-      "phone_number": "987-654-3210",
-      "role": "trainer",
-      "gym_id": "566610be-ab50-44cc-bd7f-0fffec20bc5a"
+      "_id": "89a8a2c8-1234-4dbb-88a1-9e4567c8eabd",
+      "create_date": "2023-01-15",
+      "first_name": "John",
+      "last_name": "Travis",
+      "email": "john.travis@example.com",
+      "phone_number": "546-456-7890",
+      "role": "Attendant",
+      "gym_id": "17924113-8469-4205-be31-160306db6c4d"
     },
     {
-      "_id": "b7f9c3ab-9012-4ef0-83c4-7d890e12c345",
-      "create_date": "2023-06-10",
-      "first_name": "Emily",
-      "last_name": "Johnson",
-      "email": "emily.johnson@example.com",
-      "phone_number": "555-987-6543",
-      "role": "attendant",
-      "gym_id": "566610be-ab50-44cc-bd7f-0fffec20bc5a"
+      "_id": "4b8f3c9e-1234-4dcb-88f5-9e7867c8eaef",
+      "create_date": "2023-02-01",
+      "first_name": "Sophia",
+      "last_name": "Martinez",
+      "email": "sophia.martinez@example.com",
+      "phone_number": "546-123-4567",
+      "role": "Attendant",
+      "gym_id": "17924113-8469-4205-be31-160306db6c4d"
+    },
+    {
+      "_id": "6198a2c8-1234-4dbb-88a1-9e4567c8eabc",
+      "create_date": "2023-01-15",
+      "first_name": "Brown",
+      "last_name": "Boyle",
+      "email": "brown.boyle@example.com",
+      "phone_number": "456-125-7890",
+      "role": "Attendant",
+      "gym_id": "dfd42806-6748-4d56-8dd0-e405a8625efd"
+    },
+    {
+      "_id": "5b8f4c9e-1234-4dab-88e5-9e7867c8ebaf",
+      "create_date": "2023-03-15",
+      "first_name": "Liam",
+      "last_name": "Scott",
+      "email": "liam.scott@example.com",
+      "phone_number": "456-789-0123",
+      "role": "Attendant",
+      "gym_id": "dfd42806-6748-4d56-8dd0-e405a8625efd"
     },
     {
       "_id": "d8e7a9bc-3456-4f12-98b7-6f01a234c678",
@@ -93,18 +113,48 @@
       "last_name": "Brown",
       "email": "michael.brown@example.com",
       "phone_number": "555-321-4321",
-      "role": "nutritionist",
+      "role": "Nutritionist",
       "gym_id": "566610be-ab50-44cc-bd7f-0fffec20bc5a"
     },
     {
-      "_id": "e4b7c8a1-7890-4abc-91f2-3cde5f67a890",
-      "create_date": "2023-09-18",
-      "first_name": "Sarah",
-      "last_name": "Davis",
-      "email": "sarah.davis@example.com",
-      "phone_number": "555-456-7890",
-      "role": "trainer",
+      "_id": "5b2a9c7f-1234-4abc-91f3-7c2e5f67a890",
+      "create_date": "2023-07-05",
+      "first_name": "Noah",
+      "last_name": "Green",
+      "email": "noah.green@example.com",
+      "phone_number": "555-654-3210",
+      "role": "Attendant",
       "gym_id": "566610be-ab50-44cc-bd7f-0fffec20bc5a"
+    }
+  ],
+  "Zones": [
+    {
+      "_id": "a1b2c3d4-e5f6-7890-a123-4567890abcdef",
+      "create_date": "2024-12-09",
+      "gym_id": "17924113-8469-4205-be31-160306db6c4d",
+      "zone_type": "Cardio",
+      "attendant_id": "89a8a2c8-1234-4dbb-88a1-9e4567c8eabd"
+    },
+    {
+      "_id": "b2c3d4e5-f6a1-1234-b789-4567890fedcb",
+      "create_date": "2024-12-09",
+      "gym_id": "17924113-8469-4205-be31-160306db6c4d",
+      "zone_type": "Strength",
+      "attendant_id": "4b8f3c9e-1234-4dcb-88f5-9e7867c8eaef"
+    },
+    {
+      "_id": "c3d4e5f6-a1b2-5678-c123-4567890fedcb",
+      "create_date": "2024-12-09",
+      "gym_id": "dfd42806-6748-4d56-8dd0-e405a8625efd",
+      "zone_type": "Functional Training",
+      "attendant_id": "6198a2c8-1234-4dbb-88a1-9e4567c8eabc"
+    },
+    {
+      "_id": "d4e5f6a1-b2c3-7890-d123-4567890abcde",
+      "create_date": "2024-12-09",
+      "gym_id": "566610be-ab50-44cc-bd7f-0fffec20bc5a",
+      "zone_type": "Yoga",
+      "attendant_id": "5b2a9c7f-1234-4abc-91f3-7c2e5f67a890"
     }
   ]
 }

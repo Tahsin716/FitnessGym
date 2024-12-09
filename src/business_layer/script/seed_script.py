@@ -5,7 +5,9 @@ import os
 from src.business_layer.providers.config import Config
 from src.business_layer.services.gym_service import GymService
 from src.business_layer.services.staff_member_service import StaffMemberService
+from src.business_layer.services.zone_service import ZoneService
 from src.data_layer.enum.role import Role
+from src.data_layer.enum.zone_type import ZoneType
 
 
 class SeedScript:
@@ -13,12 +15,14 @@ class SeedScript:
         self.__data = {}
         self.__gym_service = GymService()
         self.__staff_member_service = StaffMemberService()
+        self.__zone_service = ZoneService()
         self.__seed_data()
 
     def __seed_data(self):
         self.__read_file()
         self.__seed_gyms()
         self.__seed_staff()
+        self.__seed_zones()
 
     def __read_file(self):
         file_path = os.path.join(Config.DB_PATH, Config.DB_NAME)
@@ -46,5 +50,12 @@ class SeedScript:
             self.__staff_member_service.create(staff)
 
         logging.info("Seeded staffs repository")
+
+    def __seed_zones(self):
+        zones = self.__data.get("Zones", [])
+
+        for zone in zones:
+            zone['zone_type'] = ZoneType(zone['zone_type'])
+            self.__zone_service.create(zone)
 
 
