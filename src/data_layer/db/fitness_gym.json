@@ -156,5 +156,40 @@
       "zone_type": "Yoga",
       "attendant_id": "5b2a9c7f"
     }
+  ],
+  "GymMembers": [
+    {
+      "_id": "h6f231j",
+      "create_date": "2024-12-09",
+      "first_name": "Corey",
+      "last_name": "Taylor",
+      "email": "corey.taylor@example.com",
+      "phone_number": "0208-244-5666",
+      "membership_type": "Premium",
+      "height": 191,
+      "weight": 75
+    },
+    {
+      "_id": "gsa4122",
+      "create_date": "2024-12-09",
+      "first_name": "Prins",
+      "last_name": "Butt",
+      "email": "prins.butt@example.com",
+      "phone_number": "555-666-999",
+      "membership_type": "Regular",
+      "height": 191,
+      "weight": 75
+    },
+    {
+      "_id": "vvb2131",
+      "create_date": "2024-12-09",
+      "first_name": "Harshil",
+      "last_name": "Joshi",
+      "email": "harshi.joshi@example.com",
+      "phone_number": "777-888-999",
+      "membership_type": "Trial",
+      "height": 191,
+      "weight": 75
+    }
   ]
 }

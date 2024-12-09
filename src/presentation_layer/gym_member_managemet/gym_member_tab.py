@@ -1,6 +1,7 @@
 from tkinter import ttk, messagebox
 
 from src.business_layer.services.gym_member_service import GymMemberService
+from src.presentation_layer.gym_member_managemet.create_gym_member_form import CreateGymMemberForm
 
 
 class GymMemberTab(ttk.Frame):
@@ -79,7 +80,7 @@ class GymMemberTab(ttk.Frame):
             ))
 
     def create_member(self):
-        pass
+        CreateGymMemberForm(self, self.gym_member_service, self.refresh_data)
 
     def update_member(self):
         selected_item = self.tree.selection()

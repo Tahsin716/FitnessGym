@@ -21,6 +21,15 @@ class GymMemberService:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")
 
+            try:
+                data['height'] = float(data['height'])
+                data['weight'] = float(data['weight'])
+            except ValueError:
+                raise SecurityException("Invalid Height/Weight value")
+
+            if any(x < 0 for x in [data['height'],data['weight']]):
+                raise SecurityException("Height and Weight cannot be negative")
+
             if not isinstance(data['membership_type'], MembershipType):
                 raise SecurityException("Invalid membership type")
 
