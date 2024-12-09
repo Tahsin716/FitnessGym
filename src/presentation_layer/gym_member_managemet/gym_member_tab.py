@@ -97,4 +97,16 @@ class GymMemberTab(ttk.Frame):
         if not selected_item:
             messagebox.showwarning("Warning", "Please select a member to delete")
             return
-        pass
+
+        data = self.tree.item(selected_item[0], 'values')
+        _id = data[0]
+
+        if messagebox.askyesno("Confirm", "Are you sure you want to delete this gym member?"):
+            success, message = self.gym_member_service.delete(_id)
+
+            if not success:
+                messagebox.showerror("Error", message)
+            else:
+                messagebox.showinfo("Success", "GymMember successfully deleted")
+                self.refresh_data()
+
