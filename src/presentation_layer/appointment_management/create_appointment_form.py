@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 
+from src.business_layer.providers.common import Common
 from src.business_layer.services.appointment_service import AppointmentService
 from src.business_layer.services.gym_member_service import GymMemberService
 from src.business_layer.services.gym_service import GymService
@@ -84,17 +85,19 @@ class CreateAppointmentForm(tk.Toplevel):
         self.staff_dropdown.grid(row=3, column=1, padx=10, pady=5)
 
         # Schedule Date
-        ttk.Label(self, text="Schedule Date").grid(row=4, column=0, padx=10, pady=5, sticky="w")
+        ttk.Label(self, text="Schedule Date(YYYY-MM-DD)").grid(row=4, column=0, padx=10, pady=5, sticky="w")
         self.schedule_date_entry = ttk.Entry(self, textvariable=self.schedule_date)
         self.schedule_date_entry.grid(row=4, column=1, padx=10, pady=5)
 
         # Duration
         ttk.Label(self, text="Duration (minutes)").grid(row=5, column=0, padx=10, pady=5, sticky="w")
-        self.duration_entry = ttk.Entry(
+        self.duration_dropdown = ttk.Combobox(
             self,
-            textvariable=self.duration
+            textvariable=self.duration,
+            values=Common.APPOINTMENT_DURATION,
+            state="readonly"
         )
-        self.duration_entry.grid(row=5, column=1, padx=10, pady=5)
+        self.duration_dropdown.grid(row=5, column=1, padx=10, pady=5)
 
         # Buttons
         ttk.Button(self, text="Save", command=self.save_appointment).grid(row=6, column=0, padx=10, pady=10)

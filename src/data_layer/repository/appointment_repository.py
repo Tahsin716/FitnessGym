@@ -23,8 +23,7 @@ class AppointmentRepository:
         appointment.gym_id = data["gym_id"]
         appointment.staff_id = data["staff_id"]
         appointment.appointment_type = data["appointment_type"]
-        appointment.scheduled_date = data["scheduled_date"]
-        appointment.status = data["status"]
+        appointment.scheduled_date = data["schedule_date"]
         appointment.duration = data["duration"]
         return appointment
 

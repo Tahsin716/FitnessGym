@@ -57,7 +57,7 @@ class AppointmentService:
             if not data:
                 raise SecurityException("Data cannot be empty")
 
-            required_fields = ['member_id', 'gym_id','staff_id', 'appointment_type', 'schedule_date', 'duration', 'status']
+            required_fields = ['member_id', 'gym_id','staff_id', 'appointment_type', 'schedule_date', 'duration',]
             for field in required_fields:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")
@@ -65,14 +65,22 @@ class AppointmentService:
             if not isinstance(data['appointment_type'], AppointmentType):
                 raise SecurityException("Invalid appointment type")
 
+            if not Validator.is_valid_datetime(data['schedule_date']):
+                raise SecurityException("Invalid date format, date format is YYYY-MM-DD")
+            else:
+                data['schedule_date'] = datetime.datetime.strptime(data['schedule_date'], '%Y-%m-%d')
+
             if not isinstance(data['schedule_date'], datetime.datetime):
                 raise SecurityException("Invalid schedule date format")
+
+            try:
+                data['duration'] = int(data['duration'])
+            except ValueError:
+                raise SecurityException("duration must be an integer")
 
             if not isinstance(data['duration'], int) or data['duration'] <= 0:
                 raise SecurityException("Duration must be a positive integer")
 
-            if not isinstance(data['status'], AppointmentStatus):
-                raise SecurityException("Invalid appointment status")
 
             if self.appointment_repository.get_by_id(_id) is None:
                 raise SecurityException("No appointment exists with the given ID")
