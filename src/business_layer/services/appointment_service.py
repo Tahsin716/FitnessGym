@@ -35,6 +35,11 @@ class AppointmentService:
             if not isinstance(data['schedule_date'], datetime.datetime):
                 raise SecurityException("Invalid schedule date format")
 
+            try:
+                data['duration'] = int(data['duration'])
+            except ValueError:
+                raise SecurityException("duration must be an integer")
+
             if not isinstance(data['duration'], int) or data['duration'] <= 0:
                 raise SecurityException("Duration must be a positive integer")
 

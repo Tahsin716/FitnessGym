@@ -64,24 +64,24 @@ class CreateAppointmentForm(tk.Toplevel):
         )
         self.gym_member_dropdown.grid(row=1, column=1, padx=10, pady=5)
 
-        # Staff Dropdown (will be dynamically populated)
-        ttk.Label(self, text="Staff").grid(row=2, column=0, padx=10, pady=5, sticky="w")
-        self.staff_dropdown = ttk.Combobox(
-            self,
-            textvariable=self.staff_member,
-            state="disabled"
-        )
-        self.staff_dropdown.grid(row=2, column=1, padx=10, pady=5)
-
         # Appointment Type Dropdown
-        ttk.Label(self, text="Appointment Type").grid(row=3, column=0, padx=10, pady=5, sticky="w")
+        ttk.Label(self, text="Appointment Type").grid(row=2, column=0, padx=10, pady=5, sticky="w")
         self.appointment_type_dropdown = ttk.Combobox(
             self,
             textvariable=self.appointment_type,
             values=[at.value for at in AppointmentType],
             state="readonly"
         )
-        self.appointment_type_dropdown.grid(row=3, column=1, padx=10, pady=5)
+        self.appointment_type_dropdown.grid(row=2, column=1, padx=10, pady=5)
+
+        # Staff Dropdown (will be dynamically populated)
+        ttk.Label(self, text="Staff").grid(row=3, column=0, padx=10, pady=5, sticky="w")
+        self.staff_dropdown = ttk.Combobox(
+            self,
+            textvariable=self.staff_member,
+            state="disabled"
+        )
+        self.staff_dropdown.grid(row=3, column=1, padx=10, pady=5)
 
         # Schedule Date
         ttk.Label(self, text="Schedule Date").grid(row=4, column=0, padx=10, pady=5, sticky="w")
@@ -105,13 +105,21 @@ class CreateAppointmentForm(tk.Toplevel):
     def on_gym_location_selected(self, event=None):
         # Clear previous staff selection
         self.staff_member.set('')
+        staff_members = []
 
         # Get the selected gym's ID
         selected_gym_location = self.gym_location.get()
         selected_gym_id = self.gym_ids[selected_gym_location]
 
-        # Only filter trainers for this gym
-        staff_members = self.staff_member_service.get_all_consultant_by_gym(selected_gym_id)
+        appointment_type = self.appointment_type.get()
+
+        if appointment_type:
+            if appointment_type == AppointmentType.GROUP_CLASS.value or appointment_type == AppointmentType.PERSONAL_TRAINING.value:
+                role = Role.TRAINER
+            else:
+                role = Role.NUTRITIONIST
+
+            staff_members = self.staff_member_service.get_all_by_role_and_gym(role, selected_gym_id)
 
         # Populate staff dropdown
         if staff_members:
@@ -125,34 +133,6 @@ class CreateAppointmentForm(tk.Toplevel):
             self.staff_dropdown['state'] = 'disabled'
 
     def save_appointment(self):
-        # Validate inputs
-        if not self.gym_location.get():
-            messagebox.showerror("Error", "Please select a gym location")
-            return
-
-        if not self.gym_member.get():
-            messagebox.showerror("Error", "Please select a member")
-            return
-
-        if not self.staff_member.get():
-            messagebox.showerror("Error", "Please select a staff member")
-            return
-
-        if not self.appointment_type.get():
-            messagebox.showerror("Error", "Please select an appointment type")
-            return
-
-        if not self.duration.get():
-            messagebox.showerror("Error", "Please enter duration")
-            return
-
-        try:
-            duration = int(self.duration.get())
-            if duration <= 0:
-                raise ValueError("Duration must be positive")
-        except ValueError:
-            messagebox.showerror("Error", "Invalid duration. Must be a positive number.")
-            return
 
         data = {
             "member_id": self.gym_member_ids[self.gym_member.get()],
@@ -160,7 +140,7 @@ class CreateAppointmentForm(tk.Toplevel):
             "staff_id": self.staff_member_ids[self.staff_member.get()],
             "appointment_type": AppointmentType(self.appointment_type.get()),
             "schedule_date": self.schedule_date_entry.get(),
-            "duration": duration
+            "duration": self.duration.get()
         }
 
         success, message, appointment = self.appointment_service.create(data)

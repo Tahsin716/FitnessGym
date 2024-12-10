@@ -66,10 +66,6 @@ class StaffMemberService:
         staffs = self.get_all()
         return [staff for staff in staffs if staff.role == role and staff.gym_id == gym_id]
 
-    def get_all_consultant_by_gym(self, gym_id: str) -> list[StaffMember]:
-        staffs = self.get_all()
-        return [staff for staff in staffs if staff.gym_id == gym_id and (staff.role == Role.TRAINER or staff.role == Role.NUTRITIONIST)]
-
     def get_by_id(self, _id: str) -> Tuple[bool, str, StaffMember | None]:
         try:
             staff_member = self.staff_member_repository.get_by_id(_id)
