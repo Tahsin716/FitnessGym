@@ -97,6 +97,19 @@ class GymMemberService:
 
         return member_list
 
+    def get_gym_members_with_active_subscriptions(self) -> list[GymMember]:
+        subscriptions = self.subscription_repository.get_all()
+        members = self.gym_member_repository.get_all()
+
+        member_list = []
+        member_ids_with_subscriptions = {subscription.member_id for subscription in subscriptions if subscription.active}
+
+        for member in members:
+            if member.id in member_ids_with_subscriptions:
+                member_list.append(member)
+
+        return member_list
+
     def delete(self, _id: str) -> Tuple[bool, str]:
         try:
             if self.gym_member_repository.get_by_id(_id) is None:

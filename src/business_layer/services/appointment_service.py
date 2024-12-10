@@ -108,6 +108,11 @@ class AppointmentService:
             logging.error(f"SecurityException occurred while retrieving appointment: {str(e)}")
             return False, str(e), None
 
+    def get_appointment_with_pending_payment_by_member_id(self, member_id : str) -> list[Appointment]:
+        appointments = self.appointment_repository.get_all()
+        return [appointment for appointment in appointments if appointment.member_id == member_id and not appointment.is_paid]
+
+
     def delete(self, _id: str) -> Tuple[bool, str]:
         try:
             if self.appointment_repository.get_by_id(_id) is None:

@@ -100,6 +100,23 @@ class SubscriptionService:
             logging.error(f"SecurityException occurred while retrieving subscription: {str(e)}")
             return False, str(e), None
 
+    def get_by_member_id(self, member_id: str) -> Tuple[bool, str, Subscription | None]:
+        try:
+            subscriptions = self.get_all()
+            subscription = None
+
+            for sub in subscriptions:
+                if sub.member_id == member_id:
+                    subscription = sub
+                    break
+
+            if not subscription:
+                raise SecurityException("No subscription exists with the given member id")
+            return True, "", subscription
+        except SecurityException as e:
+            logging.error(f"SecurityException occurred while retrieving subscription: {str(e)}")
+            return False, str(e), None
+
     def cancel(self, _id: str) -> Tuple[bool, str]:
         try:
             subscription = self.subscription_repository.get_by_id(_id)
