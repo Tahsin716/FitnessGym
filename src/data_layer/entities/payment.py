@@ -12,6 +12,7 @@ class Payment(BaseEntity):
         self.__member_id : str = data['member_id']
         self.__payment_method : PaymentMethod = data['payment_method']
         self.__subscription_plan : SubscriptionPlan = data['subscription_plan']
+        self.__appointment_ids : list[str] = data.get('appointment_ids', [])
         self.__amount : float = data['amount']
 
     @property
@@ -29,3 +30,7 @@ class Payment(BaseEntity):
     @property
     def amount(self) -> float:
         return self.__amount
+
+    @property
+    def appointment_ids(self)  -> list[str]:
+        return self.__appointment_ids

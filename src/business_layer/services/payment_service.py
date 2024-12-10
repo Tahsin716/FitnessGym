@@ -22,6 +22,11 @@ class PaymentService:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")
 
+            try:
+                data['amount'] = float(data['amount'])
+            except ValueError:
+                raise SecurityException("Invalid amount")
+
             if not isinstance(data['payment_method'], PaymentMethod):
                 raise SecurityException("Invalid payment method")
 
