@@ -3,6 +3,7 @@ from tkinter import ttk, messagebox
 from src.business_layer.services.gym_member_service import GymMemberService
 from src.business_layer.services.subscription_service import SubscriptionService
 from src.presentation_layer.subscription_management.create_subscription_form import CreateSubscriptionForm
+from src.presentation_layer.subscription_management.update_subscription_form import UpdateSubscriptionForm
 
 
 class SubscriptionTab(ttk.Frame):
@@ -127,7 +128,13 @@ class SubscriptionTab(ttk.Frame):
             'loyalty_points': int(subscription_data[6])
         }
 
-        pass
+        UpdateSubscriptionForm(
+            self,
+            self.subscription_service,
+            self.gym_member_service,
+            update_data,
+            self.refresh_data
+        )
 
     def cancel_subscription(self):
         selected_item = self.tree.selection()

@@ -60,6 +60,12 @@ class SubscriptionService:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")
 
+            try:
+                data['discount'] = float(data['discount'])
+                data['loyalty_points'] = int(data['loyalty_points'])
+            except ValueError:
+                raise SecurityException("Invalid discount and or loyalty points")
+
             if not isinstance(data['subscription_plan'], SubscriptionPlan):
                 raise SecurityException("Invalid subscription plan")
 
