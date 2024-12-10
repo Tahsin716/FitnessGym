@@ -2,6 +2,7 @@ import logging
 import datetime
 from typing import Tuple, List
 
+from src.business_layer.utils.validation import Validator
 from src.data_layer.entities.appointment import Appointment
 from src.data_layer.enum.appointment_status import AppointmentStatus
 from src.data_layer.enum.appointment_type import AppointmentType
@@ -22,6 +23,11 @@ class AppointmentService:
             for field in required_fields:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")
+
+            if not Validator.is_valid_datetime(data['schedule_date']):
+                raise SecurityException("Invalid date format, date format is YYYY-MM-DD")
+            else:
+                data['schedule_date'] = datetime.datetime.strptime(data['schedule_date'], '%Y-%m-%d')
 
             if not isinstance(data['appointment_type'], AppointmentType):
                 raise SecurityException("Invalid appointment type")

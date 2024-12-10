@@ -4,6 +4,7 @@ from src.business_layer.services.appointment_service import AppointmentService
 from src.business_layer.services.gym_member_service import GymMemberService
 from src.business_layer.services.gym_service import GymService
 from src.business_layer.services.staff_member_service import StaffMemberService
+from src.presentation_layer.appointment_management.create_appointment_form import CreateAppointmentForm
 
 
 class AppointmentTab(ttk.Frame):
@@ -99,7 +100,14 @@ class AppointmentTab(ttk.Frame):
             ))
 
     def create_appointment(self):
-        pass
+        CreateAppointmentForm(
+            self,
+            self.gym_service,
+            self.staff_member_service,
+            self.gym_member_service,
+            self.appointment_service,
+            self.refresh_data
+        )
 
     def update_appointment(self):
         pass
