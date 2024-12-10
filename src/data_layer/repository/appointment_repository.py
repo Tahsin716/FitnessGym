@@ -19,6 +19,7 @@ class AppointmentRepository:
     def update(self, _id: str, data: dict) -> Appointment:
         appointment = self.__appointments[_id]
         appointment.member_id = data["member_id"]
+        appointment.gym_id = data["gym_id"]
         appointment.staff_id = data["staff_id"]
         appointment.appointment_type = data["appointment_type"]
         appointment.scheduled_date = data["scheduled_date"]

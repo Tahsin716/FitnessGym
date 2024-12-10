@@ -18,7 +18,7 @@ class AppointmentService:
             if not data:
                 raise SecurityException("Data cannot be empty")
 
-            required_fields = ['member_id', 'staff_id', 'appointment_type', 'schedule_date', 'duration']
+            required_fields = ['member_id', 'gym_id', 'staff_id', 'appointment_type', 'schedule_date', 'duration']
             for field in required_fields:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")
@@ -46,7 +46,7 @@ class AppointmentService:
             if not data:
                 raise SecurityException("Data cannot be empty")
 
-            required_fields = ['member_id', 'staff_id', 'appointment_type', 'schedule_date', 'duration', 'status']
+            required_fields = ['member_id', 'gym_id','staff_id', 'appointment_type', 'schedule_date', 'duration', 'status']
             for field in required_fields:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")

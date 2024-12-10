@@ -12,11 +12,20 @@ class Appointment(BaseEntity):
         super().__init__(_id, create_date)
 
         self.__member_id : str = data['member_id']
+        self.__gym_id : str = data['gym_id']
         self.__staff_id : str = data['staff_id']
         self.__appointment_type : AppointmentType = data['appointment_type']
         self.__scheduled_date : datetime = data['schedule_date']
         self.__status : AppointmentStatus = AppointmentStatus.ACTIVE
         self.__duration : int = data['duration']
+
+    @property
+    def gym_id(self) -> str:
+        return self.__gym_id
+
+    @gym_id.setter
+    def gym_id(self, value : str):
+        self.__gym_id = value
 
     @property
     def member_id(self) -> str:
