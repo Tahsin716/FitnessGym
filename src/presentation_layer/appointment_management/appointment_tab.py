@@ -11,30 +11,21 @@ from src.presentation_layer.appointment_management.update_appointment_form impor
 class AppointmentTab(ttk.Frame):
     def __init__(self, parent):
         ttk.Frame.__init__(self, parent)
+
+        # Configure grid layout
+        self.grid_rowconfigure(1, weight=1)
+        self.grid_columnconfigure(0, weight=1)
+
         self.appointment_service = AppointmentService()
         self.gym_service = GymService()
         self.staff_member_service = StaffMemberService()
         self.gym_member_service = GymMemberService()
 
+        # Action Frame
         self.action_frame = ttk.Frame(self)
+        self.action_frame.grid(row=0, column=0, sticky='ew', padx=10, pady=5)
 
-        # Configuring tree columns to match appointment attributes
-        self.tree = ttk.Treeview(self, columns=(
-            'ID', 'Member', 'Gym', 'Staff', 'Appointment Type',
-            'Scheduled Date', 'Status', 'Duration'
-        ), show='headings')
-
-        # Setting column headings
-        self.tree.heading('ID', text='ID')
-        self.tree.heading('Member', text='Member')
-        self.tree.heading('Gym', text='Gym')
-        self.tree.heading('Staff', text='Staff')
-        self.tree.heading('Appointment Type', text='Appointment Type')
-        self.tree.heading('Scheduled Date', text='Scheduled Date')
-        self.tree.heading('Status', text='Status')
-        self.tree.heading('Duration', text='Duration')
-
-        # Action buttons
+        # Buttons
         self.create_button = ttk.Button(
             self.action_frame,
             text="Create Appointment",
@@ -56,16 +47,38 @@ class AppointmentTab(ttk.Frame):
         )
         self.delete_button.pack(side='left', padx=5)
 
-        self.action_frame.pack(fill='x', pady=5)
+        # Treeview with Columns
+        self.tree = ttk.Treeview(self, columns=(
+            'ID', 'Member', 'Gym', 'Staff', 'Appointment Type',
+            'Scheduled Date', 'Status', 'Duration'
+        ), show='headings')
 
-        # Tree and scrollbar setup
-        self.tree.pack(expand=True, fill='both', padx=10, pady=10)
+        # Configure column headings and widths
+        columns_config = [
+            ('ID', 50),
+            ('Member', 150),
+            ('Gym', 100),
+            ('Staff', 150),
+            ('Appointment Type', 150),
+            ('Scheduled Date', 120),
+            ('Status', 100),
+            ('Duration', 100)
+        ]
 
+        for col, width in columns_config:
+            self.tree.heading(col, text=col)
+            self.tree.column(col, width=width, anchor='center', stretch=True)
+
+        # Scrollbar
         scrollbar = ttk.Scrollbar(self, orient="vertical", command=self.tree.yview)
         self.tree.configure(yscrollcommand=scrollbar.set)
 
-        self.tree.pack(side="left", fill="both", expand=True)
-        scrollbar.pack(side="right", fill="y")
+        # Grid placement of Treeview and Scrollbar
+        self.tree.grid(row=1, column=0, sticky='nsew', padx=10, pady=10)
+        scrollbar.grid(row=1, column=1, sticky='ns')
+
+        # Initial data refresh
+        self.refresh_data()
 
     def refresh_data(self):
         # Clear existing tree data
