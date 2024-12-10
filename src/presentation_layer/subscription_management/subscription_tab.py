@@ -2,6 +2,7 @@ from tkinter import ttk, messagebox
 
 from src.business_layer.services.gym_member_service import GymMemberService
 from src.business_layer.services.subscription_service import SubscriptionService
+from src.presentation_layer.subscription_management.create_subscription_form import CreateSubscriptionForm
 
 
 class SubscriptionTab(ttk.Frame):
@@ -100,7 +101,12 @@ class SubscriptionTab(ttk.Frame):
             ))
 
     def create_subscription(self):
-        pass
+        CreateSubscriptionForm(
+            self,
+            self.subscription_service,
+            self.gym_member_service,
+            self.refresh_data
+        )
 
     def update_subscription(self):
         selected_item = self.tree.selection()

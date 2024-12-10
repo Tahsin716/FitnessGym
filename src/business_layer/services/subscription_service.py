@@ -25,6 +25,12 @@ class SubscriptionService:
             if not isinstance(data['subscription_plan'], SubscriptionPlan):
                 raise SecurityException("Invalid subscription plan")
 
+            try:
+                data['discount'] = float(data['discount'])
+                data['loyalty_points'] = int(data['loyalty_points'])
+            except ValueError:
+                raise SecurityException("Invalid discount and or loyalty points")
+
             if not isinstance(data['payment_method'], PaymentMethod):
                 raise SecurityException("Invalid payment method")
 

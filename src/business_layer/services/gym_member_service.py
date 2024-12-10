@@ -88,12 +88,12 @@ class GymMemberService:
         subscriptions = self.subscription_repository.get_all()
         members = self.gym_member_repository.get_all()
 
-        member_map = {gym_member.id : gym_member for gym_member in members}
         member_list = []
+        member_ids_with_subscriptions = {subscription.member_id for subscription in subscriptions if subscription.active}
 
-        for subscription in subscriptions:
-            if not subscription.member_id in member_map:
-                member_list.append(member_map.get(subscription.member_id))
+        for member in members:
+            if not member.id in member_ids_with_subscriptions:
+                member_list.append(member)
 
         return member_list
 

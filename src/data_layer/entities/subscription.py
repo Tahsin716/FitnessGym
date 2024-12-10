@@ -11,7 +11,7 @@ class Subscription(BaseEntity):
         super().__init__(_id, create_date)
 
         self.__member_id : str = data['member_id']
-        self.__subscription_plan : SubscriptionPlan = data['subscription_type']
+        self.__subscription_plan : SubscriptionPlan = data['subscription_plan']
         self.__monthly_rate : float = self.__get_monthly_rate()
         self.__payment_method : PaymentMethod = data['payment_method']
         self.__discount : float = data['discount']
