@@ -4,6 +4,7 @@ from src.presentation_layer.appointment_management.appointment_tab import Appoin
 from src.presentation_layer.gym_management.gym_tab import GymTab
 from src.presentation_layer.gym_member_managemet.gym_member_tab import GymMemberTab
 from src.presentation_layer.staff_management.staff_tab import StaffMemberTab
+from src.presentation_layer.subscription_management.subscription_tab import SubscriptionTab
 from src.presentation_layer.zone_management.zone_tab import ZoneTab
 
 
@@ -20,7 +21,7 @@ class MainPage(ttk.Frame):
             "Gym Member": GymMemberTab(self.notebook),
             "Staff Member": StaffMemberTab(self.notebook),
             "Appointment": AppointmentTab(self.notebook),
-            #"Reporting" : ReportingTab(self.notebook)
+            "Subscription" : SubscriptionTab(self.notebook)
         }
 
         for tab_name, tab_instance in self.tabs.items():
