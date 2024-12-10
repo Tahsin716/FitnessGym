@@ -5,11 +5,13 @@ from src.business_layer.exception.security_exception import SecurityException
 from src.data_layer.entities.gym_member import GymMember
 from src.data_layer.enum.membership_type import MembershipType
 from src.data_layer.repository.gym_member_repository import GymMemberRepository
+from src.data_layer.repository.subscription_repository import SubscriptionRepository
 
 
 class GymMemberService:
     def __init__(self):
         self.gym_member_repository = GymMemberRepository()
+        self.subscription_repository = SubscriptionRepository()
 
     def create(self, data: dict) -> Tuple[bool, str, GymMember | None]:
         try:
@@ -81,6 +83,19 @@ class GymMemberService:
         except SecurityException as e:
             logging.error(f"SecurityException occurred while retrieving gym member: {str(e)}")
             return False, str(e), None
+
+    def get_gym_members_with_no_active_subscriptions(self) -> list[GymMember]:
+        subscriptions = self.subscription_repository.get_all()
+        members = self.gym_member_repository.get_all()
+
+        member_map = {gym_member.id : gym_member for gym_member in members}
+        member_list = []
+
+        for subscription in subscriptions:
+            if not subscription.member_id in member_map:
+                member_list.append(member_map.get(subscription.member_id))
+
+        return member_list
 
     def delete(self, _id: str) -> Tuple[bool, str]:
         try:
