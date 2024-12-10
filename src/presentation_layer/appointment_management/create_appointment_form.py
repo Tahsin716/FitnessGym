@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 
-from src.business_layer.providers.common import Common
+from src.business_layer.providers.appointment_info_provider import AppointmentProvider
 from src.business_layer.services.appointment_service import AppointmentService
 from src.business_layer.services.gym_member_service import GymMemberService
 from src.business_layer.services.gym_service import GymService
@@ -94,7 +94,7 @@ class CreateAppointmentForm(tk.Toplevel):
         self.duration_dropdown = ttk.Combobox(
             self,
             textvariable=self.duration,
-            values=Common.APPOINTMENT_DURATION,
+            values=AppointmentProvider.APPOINTMENT_DURATION,
             state="readonly"
         )
         self.duration_dropdown.grid(row=5, column=1, padx=10, pady=5)
