@@ -2,10 +2,10 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 
 from src.business_layer.providers.common import Common
+from src.business_layer.services.appointment_service import AppointmentService
+from src.business_layer.services.gym_member_service import GymMemberService
 from src.business_layer.services.gym_service import GymService
 from src.business_layer.services.staff_member_service import StaffMemberService
-from src.business_layer.services.gym_member_service import GymMemberService
-from src.business_layer.services.appointment_service import AppointmentService
 from src.data_layer.enum.appointment_type import AppointmentType
 from src.data_layer.enum.role import Role
 

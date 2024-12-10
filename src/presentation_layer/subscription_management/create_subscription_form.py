@@ -1,10 +1,11 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 
-from src.business_layer.services.subscription_service import SubscriptionService
 from src.business_layer.services.gym_member_service import GymMemberService
+from src.business_layer.services.subscription_service import SubscriptionService
 from src.data_layer.enum.payment_method import PaymentMethod
 from src.data_layer.enum.subscription_plan import SubscriptionPlan
+
 
 class CreateSubscriptionForm(tk.Toplevel):
     def __init__(self, parent, subscription_service: SubscriptionService,
