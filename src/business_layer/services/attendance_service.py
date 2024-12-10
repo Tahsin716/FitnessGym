@@ -1,7 +1,8 @@
 import logging
 from typing import Tuple, List
-from src.data_layer.entities.attendance import Attendance
+
 from src.business_layer.exception.security_exception import SecurityException
+from src.data_layer.entities.attendance import Attendance
 from src.data_layer.repository.attendance_repository import AttendanceRepository
 
 

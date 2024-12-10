@@ -1,9 +1,9 @@
 import logging
-from typing import Tuple, List
+from typing import Tuple
 
+from src.business_layer.exception.security_exception import SecurityException
 from src.data_layer.entities.staff_member import StaffMember
 from src.data_layer.enum.role import Role
-from src.business_layer.exception.security_exception import SecurityException
 from src.data_layer.repository.staff_member_repository import StaffMemberRepository
 
 

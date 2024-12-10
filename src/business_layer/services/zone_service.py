@@ -1,10 +1,10 @@
 import logging
 from typing import Tuple
 
-from src.data_layer.entities.workout_zone import WorkoutZone
 from src.business_layer.exception.security_exception import SecurityException
-from src.data_layer.repository.zone_repository import ZoneRepository
+from src.data_layer.entities.workout_zone import WorkoutZone
 from src.data_layer.enum.zone_type import ZoneType
+from src.data_layer.repository.zone_repository import ZoneRepository
 
 
 class ZoneService:

@@ -1,9 +1,9 @@
 import logging
 from typing import Tuple, List
 
+from src.business_layer.exception.security_exception import SecurityException
 from src.data_layer.entities.gym_member import GymMember
 from src.data_layer.enum.membership_type import MembershipType
-from src.business_layer.exception.security_exception import SecurityException
 from src.data_layer.repository.gym_member_repository import GymMemberRepository
 
 

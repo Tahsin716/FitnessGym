@@ -1,12 +1,12 @@
-import logging
 import datetime
+import logging
 from typing import Tuple, List
 
+from src.business_layer.exception.security_exception import SecurityException
 from src.business_layer.utils.validation import Validator
 from src.data_layer.entities.appointment import Appointment
 from src.data_layer.enum.appointment_status import AppointmentStatus
 from src.data_layer.enum.appointment_type import AppointmentType
-from src.business_layer.exception.security_exception import SecurityException
 from src.data_layer.repository.appointment_repository import AppointmentRepository
 
 

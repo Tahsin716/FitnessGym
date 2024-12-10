@@ -1,6 +1,5 @@
 import datetime
 
-
 from src.data_layer.utils.common import Common
 
 

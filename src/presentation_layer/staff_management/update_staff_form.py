@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 
-from src.business_layer.services.staff_member_service import StaffMemberService
 from src.business_layer.services.gym_service import GymService
+from src.business_layer.services.staff_member_service import StaffMemberService
 from src.data_layer.enum.role import Role
 
 

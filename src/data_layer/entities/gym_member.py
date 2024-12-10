@@ -1,5 +1,3 @@
-import datetime
-
 from src.data_layer.entities.member import Member
 from src.data_layer.enum.membership_type import MembershipType
 
