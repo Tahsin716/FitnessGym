@@ -1,5 +1,6 @@
 from tkinter import ttk
 
+from src.presentation_layer.appointment_management.appointment_tab import AppointmentTab
 from src.presentation_layer.gym_management.gym_tab import GymTab
 from src.presentation_layer.gym_member_managemet.gym_member_tab import GymMemberTab
 from src.presentation_layer.staff_management.staff_tab import StaffMemberTab
@@ -18,7 +19,7 @@ class MainPage(ttk.Frame):
             "Zones": ZoneTab(self.notebook),
             "Gym Member": GymMemberTab(self.notebook),
             "Staff Member": StaffMemberTab(self.notebook),
-            #"Sales Tracking": SalesTrackingTab(self.notebook),
+            "Appointment": AppointmentTab(self.notebook),
             #"Reporting" : ReportingTab(self.notebook)
         }
 
