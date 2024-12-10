@@ -4,6 +4,7 @@ from src.business_layer.services.appointment_service import AppointmentService
 from src.business_layer.services.gym_member_service import GymMemberService
 from src.business_layer.services.payment_service import PaymentService
 from src.business_layer.services.subscription_service import SubscriptionService
+from src.presentation_layer.payment_management.create_payment_form import CreatePaymentForm
 
 
 class PaymentTab(ttk.Frame):
@@ -71,8 +72,13 @@ class PaymentTab(ttk.Frame):
                 member_name,
                 f"${payment.amount:.2f}",
                 payment.payment_method.value,
-                payment.create_date.strftime("%Y-%m-%d %H:%M:%S")
+                payment.create_date.strftime("%Y-%m-%d")
             ))
 
     def create_payment(self):
-        pass
+        CreatePaymentForm(self,
+                          self.gym_member_service,
+                          self.subscription_service,
+                          self.appointment_service,
+                          self.payment_service,
+                          self.refresh_data)
