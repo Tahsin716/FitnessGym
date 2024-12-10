@@ -1,37 +1,40 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 
-from src.business_layer.services.appointment_service import AppointmentService
-from src.business_layer.services.gym_member_service import GymMemberService
 from src.business_layer.services.gym_service import GymService
 from src.business_layer.services.staff_member_service import StaffMemberService
+from src.business_layer.services.gym_member_service import GymMemberService
+from src.business_layer.services.appointment_service import AppointmentService
 from src.data_layer.enum.appointment_type import AppointmentType
 from src.data_layer.enum.role import Role
 
 
-class CreateAppointmentForm(tk.Toplevel):
+class UpdateAppointmentForm(tk.Toplevel):
     def __init__(self, parent, gym_service: GymService,
                  staff_member_service: StaffMemberService,
                  gym_member_service: GymMemberService,
                  appointment_service: AppointmentService,
+                 appointment_data: dict,
                  callback):
         super().__init__(parent)
         self.gym_service = gym_service
         self.staff_member_service = staff_member_service
         self.gym_member_service = gym_member_service
         self.appointment_service = appointment_service
+        self.appointment_data = appointment_data
         self.callback = callback
 
-        self.title("Create Appointment")
+        self.title("Update Appointment")
         self.geometry("500x500")
 
         # Variables to store form data
-        self.gym_location = tk.StringVar()
-        self.gym_member = tk.StringVar()
-        self.staff_member = tk.StringVar()
-        self.appointment_type = tk.StringVar()
-        self.schedule_date = tk.StringVar()
-        self.duration = tk.StringVar()
+        self.gym_location = tk.StringVar(value=appointment_data['gym'])
+        self.gym_member = tk.StringVar(value=appointment_data['member'])
+        self.staff_member = tk.StringVar(value=appointment_data['staff'])
+        self.appointment_type = tk.StringVar(value=appointment_data['appointment_type'])
+        self.schedule_date = tk.StringVar(value=appointment_data['scheduled_date'])
+        self.duration = tk.StringVar(value=str(appointment_data['duration']))
+        self.appointment_id = appointment_data['id']
 
         # Populate gym locations
         gyms = self.gym_service.get_all_gyms()
@@ -74,12 +77,12 @@ class CreateAppointmentForm(tk.Toplevel):
         self.appointment_type_dropdown.grid(row=2, column=1, padx=10, pady=5)
         self.appointment_type_dropdown.bind('<<ComboboxSelected>>', self.on_appointment_type_selected)
 
-        # Staff Dropdown (will be dynamically populated)
+        # Staff Dropdown (dynamically populated)
         ttk.Label(self, text="Staff").grid(row=3, column=0, padx=10, pady=5, sticky="w")
         self.staff_dropdown = ttk.Combobox(
             self,
             textvariable=self.staff_member,
-            state="disabled"
+            state="readonly"
         )
         self.staff_dropdown.grid(row=3, column=1, padx=10, pady=5)
 
@@ -97,10 +100,11 @@ class CreateAppointmentForm(tk.Toplevel):
         self.duration_entry.grid(row=5, column=1, padx=10, pady=5)
 
         # Buttons
-        ttk.Button(self, text="Save", command=self.save_appointment).grid(row=6, column=0, padx=10, pady=10)
+        ttk.Button(self, text="Update", command=self.update_appointment).grid(row=6, column=0, padx=10, pady=10)
         ttk.Button(self, text="Cancel", command=self.close_form).grid(row=6, column=1, padx=10, pady=10)
 
         self.staff_member_ids = {}
+
 
     def on_gym_location_selected(self, event=None):
         # Clear previous staff selection
@@ -136,8 +140,7 @@ class CreateAppointmentForm(tk.Toplevel):
         # This will trigger staff dropdown population based on gym and appointment type
         self.on_gym_location_selected()
 
-    def save_appointment(self):
-
+    def update_appointment(self):
         data = {
             "member_id": self.gym_member_ids.get(self.gym_member.get(), None),
             "gym_id": self.gym_ids.get(self.gym_location.get(), None),
@@ -147,13 +150,13 @@ class CreateAppointmentForm(tk.Toplevel):
             "duration": self.duration.get()
         }
 
-        success, message, appointment = self.appointment_service.create(data)
+        success, message, appointment = self.appointment_service.update(self.appointment_id, data)
 
         if not success:
             messagebox.showerror("Error", message)
             self.focus()
         else:
-            messagebox.showinfo("Success", "Appointment created successfully!")
+            messagebox.showinfo("Success", "Appointment updated successfully!")
             self.callback()
             self.close_form()
 

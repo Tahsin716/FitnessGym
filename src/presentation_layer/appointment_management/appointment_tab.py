@@ -5,6 +5,7 @@ from src.business_layer.services.gym_member_service import GymMemberService
 from src.business_layer.services.gym_service import GymService
 from src.business_layer.services.staff_member_service import StaffMemberService
 from src.presentation_layer.appointment_management.create_appointment_form import CreateAppointmentForm
+from src.presentation_layer.appointment_management.update_appointment_form import UpdateAppointmentForm
 
 
 class AppointmentTab(ttk.Frame):
@@ -94,7 +95,7 @@ class AppointmentTab(ttk.Frame):
                 gym_location,
                 staff_name,
                 appointment.appointment_type.value,
-                appointment.scheduled_date,
+                appointment.scheduled_date.strftime('%Y-%m-%d'),
                 appointment.status.value,
                 appointment.duration
             ))
@@ -110,7 +111,34 @@ class AppointmentTab(ttk.Frame):
         )
 
     def update_appointment(self):
-        pass
+        selected_item = self.tree.selection()
+        if not selected_item:
+            messagebox.showwarning("Warning", "Please select an appointment to update")
+            return
+
+        # Get appointment data from selected item
+        appointment_data = self.tree.item(selected_item[0], 'values')
+
+        # Create a dictionary with appointment details
+        update_data = {
+            'id': appointment_data[0],
+            'member': appointment_data[1],
+            'gym': appointment_data[2],
+            'staff': appointment_data[3],
+            'appointment_type': appointment_data[4],
+            'scheduled_date': appointment_data[5],
+            'duration': appointment_data[7]
+        }
+
+        UpdateAppointmentForm(
+            self,
+            self.gym_service,
+            self.staff_member_service,
+            self.gym_member_service,
+            self.appointment_service,
+            update_data,
+            self.refresh_data
+        )
 
     def delete_appointment(self):
         selected_item = self.tree.selection()
