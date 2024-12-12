@@ -1,11 +1,14 @@
 import json
 import logging
 import os
+from datetime import datetime
 
 from src.business_layer.providers.config import Config
 from src.business_layer.services.appointment_service import AppointmentService
 from src.business_layer.services.gym_service import GymService
+from src.business_layer.services.payment_service import PaymentService
 from src.business_layer.services.staff_member_service import StaffMemberService
+from src.business_layer.services.subscription_service import SubscriptionService
 from src.business_layer.services.zone_service import ZoneService
 from src.business_layer.services.gym_member_service import GymMemberService
 
@@ -17,14 +20,19 @@ class ExportScript:
         self.__zone_service = ZoneService()
         self.__gym_member_service = GymMemberService()
         self.__appointment_service = AppointmentService()
+        self.__subscription_service = SubscriptionService()
+        self.__payment_service = PaymentService()
         self.__export_data = {}
 
     def export(self):
         try:
             self.__export_gyms()
-            self.__export_staff()
             self.__export_zones()
             self.__export_gym_members()
+            self.__export_staff()
+            self.__export_payments()
+            self.__export_subscription()
+            self.__export_appointments()
             self.__write_to_file()
             logging.info("Successfully exported all data")
         except Exception as e:
@@ -38,7 +46,7 @@ class ExportScript:
         for gym in gyms:
             data = {
                 "_id": gym.id,
-                "create_id": gym.create_date,
+                "create_date": gym.create_date,
                 "location": gym.location,
                 "address": gym.address,
                 "post_code": gym.post_code,
@@ -56,7 +64,7 @@ class ExportScript:
         for staff in staffs:
             data = {
                 "_id": staff.id,
-                "create_data": staff.create_date,
+                "create_date": staff.create_date,
                 "first_name": staff.first_name,
                 "last_name": staff.last_name,
                 "email": staff.email,
@@ -122,6 +130,48 @@ class ExportScript:
             }
             self.__export_data["Appointments"].append(data)
 
+    def __export_subscription(self):
+        subscriptions = self.__subscription_service.get_all()
+        self.__export_data["Subscriptions"] = []
+
+        for subscription in subscriptions:
+            data = {
+                "_id": subscription.id,
+                "create_date": subscription.create_date,
+                "member_id": subscription.member_id,
+                "subscription_plan": subscription.subscription_plan.value,
+                "payment_method": subscription.payment_method.value,
+                "discount": subscription.discount,
+                "active": subscription.active,
+                "loyalty_points": subscription.loyalty_points
+            }
+            self.__export_data["Subscriptions"].append(data)
+
+    def __export_payments(self):
+        payments = self.__payment_service.get_all()
+        self.__export_data["Payments"] = []
+
+        for payment in payments:
+            data = {
+                "_id": payment.id,
+                "create_date": payment.create_date,
+                "member_id": payment.member_id,
+                "subscription_plan": payment.subscription_plan.value,
+                "appointment_ids": payment.appointment_ids,
+                "amount": payment.amount
+            }
+            self.__export_data["Payments"].append(data)
+
+    def _make_serializable(self, data):
+        if isinstance(data, datetime):
+            return str(data.strftime("%Y-%m-%d"))
+        elif isinstance(data, list):
+            return [self._make_serializable(item) for item in data]
+        elif isinstance(data, dict):
+            return {key: self._make_serializable(value) for key, value in data.items()}
+        else:
+            return data
+
     def __write_to_file(self):
 
         file_path = os.path.join(Config.DB_PATH, Config.DB_NAME)
@@ -129,7 +179,9 @@ class ExportScript:
         # Ensure the directory exists
         os.makedirs(Config.DB_PATH, exist_ok=True)
 
+        serializable_data = self._make_serializable(self.__export_data)
+
         with open(file_path, "w") as file:
-            json.dump(self.__export_data, file, indent=2)
+            json.dump(serializable_data, file, indent=2)
 
         logging.info(f"Data written to {file_path}")
