@@ -17,7 +17,7 @@ class SubscriptionService:
             if not data:
                 raise SecurityException("Data cannot be empty")
 
-            required_fields = ['member_id', 'subscription_plan', 'payment_method', 'discount', 'loyalty_points']
+            required_fields = ['member_id', 'subscription_plan', 'payment_method']
             for field in required_fields:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")
@@ -26,8 +26,10 @@ class SubscriptionService:
                 raise SecurityException("Invalid subscription plan")
 
             try:
-                data['discount'] = float(data['discount'])
-                data['loyalty_points'] = int(data['loyalty_points'])
+                discount = data.get("discount", 0)
+                loyalty_points = data.get("loyalty_points", 0)
+                data['discount'] = float(discount)
+                data['loyalty_points'] = int(loyalty_points)
             except ValueError:
                 raise SecurityException("Invalid discount and or loyalty points")
 
@@ -55,14 +57,16 @@ class SubscriptionService:
             if not subscription:
                 raise SecurityException("No subscription exists with the given ID")
 
-            required_fields = ['subscription_plan', 'payment_method', 'discount', 'loyalty_points']
+            required_fields = ['subscription_plan', 'payment_method']
             for field in required_fields:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")
 
             try:
-                data['discount'] = float(data['discount'])
-                data['loyalty_points'] = int(data['loyalty_points'])
+                discount = data.get("discount", 0)
+                loyalty_points = data.get("loyalty_points", 0)
+                data['discount'] = float(discount)
+                data['loyalty_points'] = int(loyalty_points)
             except ValueError:
                 raise SecurityException("Invalid discount and or loyalty points")
 
