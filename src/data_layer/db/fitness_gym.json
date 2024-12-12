@@ -4,8 +4,8 @@
       "_id": "17924113",
       "create_date": "2024-12-08",
       "location": "Downtown Fitness Center",
-      "post_code": "DT12 3AB",
       "address": "123 Main Street, Downtown",
+      "post_code": "DT12 3AB",
       "phone_number": "123-456-7890",
       "email": "info@downtownfitness.com"
     },
@@ -13,8 +13,8 @@
       "_id": "dfd42806",
       "create_date": "2024-12-08",
       "location": "Uptown Wellness Hub",
-      "post_code": "UT45 6CD",
       "address": "456 Uptown Avenue, Uptown",
+      "post_code": "UT45 6CD",
       "phone_number": "987-654-3210",
       "email": "contact@uptownwellness.com"
     },
@@ -22,8 +22,8 @@
       "_id": "566610be",
       "create_date": "2024-12-08",
       "location": "Westside Athletic Club",
-      "post_code": "WS78 9EF",
       "address": "789 Westside Drive, Westside",
+      "post_code": "WS78 9EF",
       "phone_number": "555-987-1234",
       "email": "support@westsideathletics.com"
     },
@@ -31,8 +31,8 @@
       "_id": "6734ff4f",
       "create_date": "2024-12-08",
       "location": "Eastside Gymnasium",
-      "post_code": "ES34 5GH",
       "address": "321 Eastside Street, Eastside",
+      "post_code": "ES34 5GH",
       "phone_number": "555-321-4321",
       "email": "hello@eastsidegym.com"
     },
@@ -40,8 +40,8 @@
       "_id": "920f66d6",
       "create_date": "2024-12-08",
       "location": "Central Fitness Hub",
-      "post_code": "CF22 7HI",
       "address": "456 Central Avenue, City Center",
+      "post_code": "CF22 7HI",
       "phone_number": "555-456-6543",
       "email": "contact@centralfitness.com"
     },
@@ -49,10 +49,75 @@
       "_id": "a19be7df",
       "create_date": "2024-12-08",
       "location": "Northside Strength Center",
-      "post_code": "NS91 2JK",
       "address": "654 Northside Lane, Northside",
+      "post_code": "NS91 2JK",
       "phone_number": "555-789-8765",
       "email": "info@northsidestrength.com"
+    }
+  ],
+  "Zones": [
+    {
+      "_id": "a1b2c3d4",
+      "create_date": "2024-12-09",
+      "gym_id": "17924113",
+      "zone_type": "Cardio",
+      "attendant_id": "89a8a2c8"
+    },
+    {
+      "_id": "b2c3d4e5",
+      "create_date": "2024-12-09",
+      "gym_id": "17924113",
+      "zone_type": "Strength",
+      "attendant_id": "4b8f3c9e"
+    },
+    {
+      "_id": "c3d4e5f6",
+      "create_date": "2024-12-09",
+      "gym_id": "dfd42806",
+      "zone_type": "Functional Training",
+      "attendant_id": "6198a2c8"
+    },
+    {
+      "_id": "d4e5f6a1",
+      "create_date": "2024-12-09",
+      "gym_id": "566610be",
+      "zone_type": "Yoga",
+      "attendant_id": "5b2a9c7f"
+    }
+  ],
+  "GymMembers": [
+    {
+      "_id": "h6f231j",
+      "create_date": "2024-12-09",
+      "first_name": "Corey",
+      "last_name": "Taylor",
+      "email": "corey.taylor@example.com",
+      "phone_number": "0208-244-5666",
+      "membership_type": "Premium",
+      "height": 191.0,
+      "weight": 75.0
+    },
+    {
+      "_id": "gsa4122",
+      "create_date": "2024-12-09",
+      "first_name": "Prins",
+      "last_name": "Butt",
+      "email": "prins.butt@example.com",
+      "phone_number": "555-666-999",
+      "membership_type": "Regular",
+      "height": 191.0,
+      "weight": 75.0
+    },
+    {
+      "_id": "vvb2131",
+      "create_date": "2024-12-09",
+      "first_name": "Harshil",
+      "last_name": "Joshi",
+      "email": "harshi.joshi@example.com",
+      "phone_number": "777-888-999",
+      "membership_type": "Trial",
+      "height": 191.0,
+      "weight": 75.0
     }
   ],
   "StaffMembers": [
@@ -127,69 +192,18 @@
       "gym_id": "566610be"
     }
   ],
-  "Zones": [
+  "Payments": [],
+  "Subscriptions": [
     {
-      "_id": "a1b2c3d4",
-      "create_date": "2024-12-09",
-      "gym_id": "17924113",
-      "zone_type": "Cardio",
-      "attendant_id": "89a8a2c8"
-    },
-    {
-      "_id": "b2c3d4e5",
-      "create_date": "2024-12-09",
-      "gym_id": "17924113",
-      "zone_type": "Strength",
-      "attendant_id": "4b8f3c9e"
-    },
-    {
-      "_id": "c3d4e5f6",
-      "create_date": "2024-12-09",
-      "gym_id": "dfd42806",
-      "zone_type": "Functional Training",
-      "attendant_id": "6198a2c8"
-    },
-    {
-      "_id": "d4e5f6a1",
-      "create_date": "2024-12-09",
-      "gym_id": "566610be",
-      "zone_type": "Yoga",
-      "attendant_id": "5b2a9c7f"
+      "_id": "a735d1f7",
+      "create_date": "2024-12-12",
+      "member_id": "h6f231j",
+      "subscription_plan": "monthly",
+      "payment_method": "credit card",
+      "discount": 0.0,
+      "active": true,
+      "loyalty_points": 0
     }
   ],
-  "GymMembers": [
-    {
-      "_id": "h6f231j",
-      "create_date": "2024-12-09",
-      "first_name": "Corey",
-      "last_name": "Taylor",
-      "email": "corey.taylor@example.com",
-      "phone_number": "0208-244-5666",
-      "membership_type": "Premium",
-      "height": 191,
-      "weight": 75
-    },
-    {
-      "_id": "gsa4122",
-      "create_date": "2024-12-09",
-      "first_name": "Prins",
-      "last_name": "Butt",
-      "email": "prins.butt@example.com",
-      "phone_number": "555-666-999",
-      "membership_type": "Regular",
-      "height": 191,
-      "weight": 75
-    },
-    {
-      "_id": "vvb2131",
-      "create_date": "2024-12-09",
-      "first_name": "Harshil",
-      "last_name": "Joshi",
-      "email": "harshi.joshi@example.com",
-      "phone_number": "777-888-999",
-      "membership_type": "Trial",
-      "height": 191,
-      "weight": 75
-    }
-  ]
+  "Appointments": []
 }
