@@ -29,7 +29,7 @@ class CreatePaymentForm(tk.Toplevel):
         self.total_amount = tk.DoubleVar(value=0.0)
 
         # Member Selection
-        ttk.Label(self, text="Select Member (No Active Subscription)").grid(row=0, column=0, padx=10, pady=5,
+        ttk.Label(self, text="Select Member (With Active Subscription)").grid(row=0, column=0, padx=10, pady=5,
                                                                             sticky="w")
         self.member_dropdown = ttk.Combobox(self, textvariable=self.selected_member, state="readonly")
         self.member_dropdown.grid(row=0, column=1, padx=10, pady=5, sticky="ew")
