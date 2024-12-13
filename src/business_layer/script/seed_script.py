@@ -4,6 +4,7 @@ import os
 
 from src.business_layer.providers.config import Config
 from src.business_layer.services.appointment_service import AppointmentService
+from src.business_layer.services.attendance_service import AttendanceService
 from src.business_layer.services.gym_member_service import GymMemberService
 from src.business_layer.services.gym_service import GymService
 from src.business_layer.services.payment_service import PaymentService
@@ -29,6 +30,7 @@ class SeedScript:
         self.__appointment_service = AppointmentService()
         self.__subscription_service = SubscriptionService()
         self.__payment_service = PaymentService()
+        self.__attendance_service = AttendanceService()
         self.__seed_data()
 
     def __seed_data(self):
@@ -39,6 +41,7 @@ class SeedScript:
         self.__seed_gym_members()
         self.__seed_appointments()
         self.__seed_subscriptions()
+        self.__seed_attendances()
         self.__seed_payments()
 
     def __read_file(self):
@@ -105,3 +108,9 @@ class SeedScript:
             payment["subscription_plan"] = SubscriptionPlan(payment["subscription_plan"])
             payment["payment_method"] = PaymentMethod(payment["payment_method"])
             self.__payment_service.create(payment)
+
+    def __seed_attendances(self):
+        attendances = self.__data.get("Attendances", [])
+
+        for attendance in attendances:
+            self.__attendance_service.create(attendance)

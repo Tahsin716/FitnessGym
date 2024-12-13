@@ -205,5 +205,17 @@
       "loyalty_points": 0
     }
   ],
-  "Appointments": []
+  "Appointments": [],
+  "Attendances": [
+    {
+      "_id": "350a65b0",
+      "create_date": "2024-12-13",
+      "member_id": "h6f231j",
+      "gym_id": "17924113",
+      "zone_id": "a1b2c3d4",
+      "checkin_time": "10:00",
+      "checkout_time": "10:30",
+      "duration": 30
+    }
+  ]
 }

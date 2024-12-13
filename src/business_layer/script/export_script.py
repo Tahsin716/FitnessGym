@@ -2,9 +2,11 @@ import json
 import logging
 import os
 from datetime import datetime
+from typing import Tuple
 
 from src.business_layer.providers.config import Config
 from src.business_layer.services.appointment_service import AppointmentService
+from src.business_layer.services.attendance_service import AttendanceService
 from src.business_layer.services.gym_service import GymService
 from src.business_layer.services.payment_service import PaymentService
 from src.business_layer.services.staff_member_service import StaffMemberService
@@ -22,9 +24,10 @@ class ExportScript:
         self.__appointment_service = AppointmentService()
         self.__subscription_service = SubscriptionService()
         self.__payment_service = PaymentService()
+        self.__attendance_service = AttendanceService()
         self.__export_data = {}
 
-    def export(self):
+    def export(self) -> Tuple[bool, str]:
         try:
             self.__export_gyms()
             self.__export_zones()
@@ -33,11 +36,15 @@ class ExportScript:
             self.__export_payments()
             self.__export_subscription()
             self.__export_appointments()
+            self.__export_attendances()
             self.__write_to_file()
-            logging.info("Successfully exported all data")
+            message = "Successfully exported all data"
+            logging.info(message)
+            return True, message
         except Exception as e:
-            logging.error(f"Export failed: {str(e)}")
-            raise
+            message = f"Export failed: {str(e)}"
+            logging.error(message)
+            return False, message
 
     def __export_gyms(self):
         gyms = self.__gym_service.get_all_gyms()
@@ -161,6 +168,23 @@ class ExportScript:
                 "amount": payment.amount
             }
             self.__export_data["Payments"].append(data)
+
+    def __export_attendances(self):
+        attendances = self.__attendance_service.get_all()
+        self.__export_data["Attendances"] = []
+
+        for attendance in attendances:
+            data = {
+                "_id": attendance.id,
+                "create_date": attendance.create_date,
+                "member_id": attendance.member_id,
+                "gym_id": attendance.gym_id,
+                "zone_id": attendance.zone_id,
+                "checkin_time": attendance.checkin_time,
+                "checkout_time": attendance.checkout_time,
+                "duration": attendance.duration
+            }
+            self.__export_data["Attendances"].append(data)
 
     def _make_serializable(self, data):
         if isinstance(data, datetime):
