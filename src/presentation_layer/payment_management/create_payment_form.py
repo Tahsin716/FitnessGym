@@ -23,27 +23,22 @@ class CreatePaymentForm(tk.Toplevel):
         self.title("Create Payment")
         self.geometry("500x600")
 
-        # Variables
         self.selected_member = tk.StringVar()
         self.payment_method = tk.StringVar()
         self.total_amount = tk.DoubleVar(value=0.0)
 
-        # Member Selection
         ttk.Label(self, text="Select Member (With Active Subscription)").grid(row=0, column=0, padx=10, pady=5,
                                                                             sticky="w")
         self.member_dropdown = ttk.Combobox(self, textvariable=self.selected_member, state="readonly")
         self.member_dropdown.grid(row=0, column=1, padx=10, pady=5, sticky="ew")
 
-        # Payment Method
         ttk.Label(self, text="Payment Plan:").grid(row=1, column=0, padx=5, pady=5, sticky="w")
         self.payment_method_label = ttk.Label(self, text="")
         self.payment_method_label.grid(row=1, column=1, padx=5, pady=5, sticky="w")
 
-        # Details Frame
         details_frame = ttk.LabelFrame(self, text="Payment Details")
         details_frame.grid(row=2, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
 
-        # Subscription Details
         ttk.Label(details_frame, text="Subscription Plan:").grid(row=0, column=0, padx=5, pady=5, sticky="w")
         self.subscription_plan_label = ttk.Label(details_frame, text="")
         self.subscription_plan_label.grid(row=0, column=1, padx=5, pady=5, sticky="w")
@@ -52,24 +47,19 @@ class CreatePaymentForm(tk.Toplevel):
         self.monthly_rate_label = ttk.Label(details_frame, text="")
         self.monthly_rate_label.grid(row=1, column=1, padx=5, pady=5, sticky="w")
 
-        # Pending Appointments
         self.pending_appointments_tree = ttk.Treeview(details_frame, columns=('Appointment', 'Cost'), show='headings')
         self.pending_appointments_tree.heading('Appointment', text='Appointment')
         self.pending_appointments_tree.heading('Cost', text='Cost')
         self.pending_appointments_tree.grid(row=2, column=0, columnspan=2, padx=5, pady=5, sticky="ew")
 
-        # Total Amount
         ttk.Label(details_frame, text="Total Amount:").grid(row=3, column=0, padx=5, pady=5, sticky="w")
         self.total_amount_label = ttk.Label(details_frame, textvariable=self.total_amount)
         self.total_amount_label.grid(row=3, column=1, padx=5, pady=5, sticky="w")
 
-        # Populate Member Dropdown
         self.populate_members()
 
-        # Bind Selection Events
         self.member_dropdown.bind('<<ComboboxSelected>>', self.on_member_select)
 
-        # Buttons
         ttk.Button(self, text="Pay", command=self.process_payment).grid(row=3, column=0, padx=10, pady=10)
         ttk.Button(self, text="Cancel", command=self.destroy).grid(row=3, column=1, padx=10, pady=10)
 
@@ -85,20 +75,16 @@ class CreatePaymentForm(tk.Toplevel):
 
         member_id = self.selected_member.get().split('(')[1].strip(')')
 
-        # Get Subscription
         sub_success, sub_message, subscription = self.subscription_service.get_by_member_id(member_id)
 
         self.subscription_plan_label.config(text=subscription.subscription_plan.value)
         self.payment_method_label.config(text=subscription.payment_method.value)
 
-        # Calculate Monthly Rate
         monthly_rate = subscription.monthly_rate
         self.monthly_rate_label.config(text=f"${monthly_rate:.2f}")
 
-        # Get Pending Appointments
         pending_appointments = self.appointment_service.get_appointment_with_pending_payment_by_member_id(member_id)
 
-        # Clear Previous Entries
         for i in self.pending_appointments_tree.get_children():
             self.pending_appointments_tree.delete(i)
 
@@ -110,10 +96,8 @@ class CreatePaymentForm(tk.Toplevel):
             ))
             total_appointment_cost += appointment.cost
 
-        # Update Total Amount
         total_amount = monthly_rate + total_appointment_cost
         self.total_amount.set(total_amount)
-
 
     def process_payment(self):
         member_id = self.selected_member.get().split('(')[1].strip(')')

@@ -11,30 +11,24 @@ class PaymentTab(ttk.Frame):
     def __init__(self, parent):
         ttk.Frame.__init__(self, parent)
 
-        # Configure grid layout
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
-        # Services
         self.gym_member_service = GymMemberService()
         self.subscription_service = SubscriptionService()
         self.appointment_service = AppointmentService()
         self.payment_service = PaymentService()
 
-        # Action Frame
         self.action_frame = ttk.Frame(self)
         self.action_frame.grid(row=0, column=0, sticky='ew', padx=10, pady=5)
 
-        # Buttons
         self.create_payment_button = ttk.Button(self.action_frame, text="Create Payment", command=self.create_payment)
         self.create_payment_button.pack(side='left', padx=5)
 
-        # Treeview with Scrollbar
         self.tree = ttk.Treeview(self, columns=(
             'ID', 'Member Name', 'Total Amount', 'Payment Method', 'Date'
         ), show='headings')
 
-        # Configure column headings and widths
         columns_config = [
             ('ID', 50),
             ('Member Name', 200),
@@ -47,11 +41,9 @@ class PaymentTab(ttk.Frame):
             self.tree.heading(col, text=col)
             self.tree.column(col, width=width, anchor='center', stretch=True)
 
-        # Scrollbar
         scrollbar = ttk.Scrollbar(self, orient="vertical", command=self.tree.yview)
         self.tree.configure(yscrollcommand=scrollbar.set)
 
-        # Grid placement of Treeview and Scrollbar
         self.tree.grid(row=1, column=0, sticky='nsew', padx=10, pady=10)
         scrollbar.grid(row=1, column=1, sticky='ns')
 
