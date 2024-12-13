@@ -4,6 +4,7 @@ from src.business_layer.services.attendance_service import AttendanceService
 from src.business_layer.services.gym_member_service import GymMemberService
 from src.business_layer.services.gym_service import GymService
 from src.business_layer.services.zone_service import ZoneService
+from src.presentation_layer.attendance_management.create_attendance_form import CreateAttendanceForm
 
 
 class AttendanceTab(ttk.Frame):
@@ -63,7 +64,7 @@ class AttendanceTab(ttk.Frame):
             _, _, gym = self.__gym_service.get_gym_by_id(attendance.gym_id)
             _, _, zone = self.__zone_service.get_zone_by_id(attendance.zone_id)
             gym_location = gym.location if gym else "Unknown"
-            zone_type = zone.zone_type if zone else "Unknown"
+            zone_type = zone.zone_type.value if zone else "Unknown"
 
             self.tree.insert('', 'end', values=(
                 attendance.id,
@@ -76,4 +77,11 @@ class AttendanceTab(ttk.Frame):
             ))
 
     def create_attendance(self):
-        pass
+        CreateAttendanceForm(
+            self,
+            self.__attendance_service,
+            self.__gym_service,
+            self.__gym_member_service,
+            self.__zone_service,
+            self.refresh_data
+        )

@@ -9,3 +9,11 @@ class Validator:
             return True
         except ValueError:
             return False
+
+    @staticmethod
+    def is_valid_time_format(time_str: str) -> bool:
+        try:
+            datetime.datetime.strptime(time_str, "%H:%M")
+            return True
+        except ValueError:
+            return False
