@@ -75,6 +75,10 @@ class ZoneService:
             logging.error(f"SecurityException occurred while retrieving zone: {str(e)}")
             return False, str(e), None
 
+    def get_zones_by_gym_id(self, gym_id : str) -> list[WorkoutZone]:
+        zones = self.get_all_zones()
+        return [zone for zone in zones if zone.gym_id == gym_id]
+
     def delete(self, _id: str) -> Tuple[bool, str]:
         try:
             if self.zone_repository.get_zone_by_id(_id) is None:
