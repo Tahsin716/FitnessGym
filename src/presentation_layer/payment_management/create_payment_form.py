@@ -129,11 +129,7 @@ class CreatePaymentForm(tk.Toplevel):
 
         if success:
             messagebox.showinfo("Success", "Payment processed successfully!")
-            # Mark appointments as paid
-            pending_appointments = self.appointment_service.get_appointment_with_pending_payment_by_member_id(member_id)
-            for appointment in pending_appointments:
-                appointment.is_paid = True
-
+            self.appointment_service.complete_payment_for_appointments_by_member_id(member_id)
             self.callback()
             self.destroy()
         else:

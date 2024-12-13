@@ -112,6 +112,11 @@ class AppointmentService:
         appointments = self.appointment_repository.get_all()
         return [appointment for appointment in appointments if appointment.member_id == member_id and not appointment.is_paid]
 
+    def complete_payment_for_appointments_by_member_id(self, member_id : str):
+        appointments = self.get_appointment_with_pending_payment_by_member_id(member_id)
+
+        for appointment in appointments:
+            appointment.is_paid = True
 
     def delete(self, _id: str) -> Tuple[bool, str]:
         try:
