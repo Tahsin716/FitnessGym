@@ -15,13 +15,10 @@ class AttendanceService:
             if not data:
                 raise SecurityException("Data cannot be empty")
 
-            required_fields = ['gym_id', 'workout_zone_id', 'checkin_time', 'checkout_time', 'duration']
+            required_fields = ['gym_id', 'workout_zone_id', 'checkin_time', 'checkout_time']
             for field in required_fields:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")
-
-            if not isinstance(data['duration'], int) or data['duration'] < 0:
-                raise SecurityException("Duration must be a non-negative integer")
 
             attendance = self.attendance_repository.create(data)
             return True, "", attendance
