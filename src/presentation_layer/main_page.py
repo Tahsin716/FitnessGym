@@ -1,6 +1,7 @@
 from tkinter import ttk
 
 from src.presentation_layer.appointment_management.appointment_tab import AppointmentTab
+from src.presentation_layer.attendance_management.attendance_tab import AttendanceTab
 from src.presentation_layer.export_management.export_tab import ExportTab
 from src.presentation_layer.gym_management.gym_tab import GymTab
 from src.presentation_layer.gym_member_managemet.gym_member_tab import GymMemberTab
@@ -22,6 +23,7 @@ class MainPage(ttk.Frame):
             "Zones": ZoneTab(self.notebook),
             "Gym Member": GymMemberTab(self.notebook),
             "Staff Member": StaffMemberTab(self.notebook),
+            "Attendance" : AttendanceTab(self.notebook),
             "Appointment": AppointmentTab(self.notebook),
             "Subscription" : SubscriptionTab(self.notebook),
             "Payment" : PaymentTab(self.notebook),

@@ -15,7 +15,7 @@ class AttendanceService:
             if not data:
                 raise SecurityException("Data cannot be empty")
 
-            required_fields = ['gym_id', 'workout_zone_id', 'checkin_time', 'checkout_time']
+            required_fields = ['member_id' , 'gym_id', 'workout_zone_id', 'checkin_time', 'checkout_time']
             for field in required_fields:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")
