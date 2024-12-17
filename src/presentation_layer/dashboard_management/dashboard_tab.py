@@ -28,9 +28,14 @@ class DashboardTab(ttk.Frame):
         self.attendance_frame = ttk.LabelFrame(self, text="Attendance")
         self.attendance_frame.grid(row=1, column=1, padx=10, pady=10, sticky='nsew')
 
+        self.__chart_info = {}
+
         self.refresh_data()
 
     def refresh_data(self):
+        for item in self.__chart_info.values():
+            item.destroy()
+
         appointment_data = self.__dashboard_service.get_current_month_appointment_data()
         subscription_data = self.__dashboard_service.get_current_month_subscription_data()
         payment_data = self.__dashboard_service.get_current_month_payment_data()
@@ -71,26 +76,24 @@ class DashboardTab(ttk.Frame):
             label.pack(expand=True, fill='both')
             return
 
-        # Create a local Matplotlib figure instance
         fig = Figure(figsize=(4, 3), dpi=100)
-        ax = fig.add_subplot(111)  # Add a single subplot
+        ax = fig.add_subplot(111)
 
-        # Generate pie chart
         pie_data = [data.get(key, 0) for key in keys]
         ax.pie(pie_data, labels=keys, autopct='%1.1f%%')
         ax.set_title(title, fontsize=10)
 
-        # Embed the Matplotlib figure into the Tkinter frame
         canvas = FigureCanvasTkAgg(fig, master=parent_frame)
         canvas.draw()
         canvas_widget = canvas.get_tk_widget()
         canvas_widget.pack(expand=True, fill='both')
 
+        self.__chart_info[title] = canvas_widget
+
         plt.close(fig)
 
 
     def _create_numeric_display(self, parent_frame, title, data):
-        # Clear any existing widgets
         for widget in parent_frame.winfo_children():
             widget.destroy()
 
@@ -106,7 +109,6 @@ class DashboardTab(ttk.Frame):
         ttk.Label(frame, text=f"Total Amount: ${data['Amount']:,.2f}").pack()
 
     def _create_attendance_display(self, parent_frame, title, data):
-        # Clear any existing widgets
         for widget in parent_frame.winfo_children():
             widget.destroy()
 
