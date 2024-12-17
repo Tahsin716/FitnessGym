@@ -18,14 +18,12 @@ class CreateSubscriptionForm(tk.Toplevel):
         self.title("Create Subscription")
         self.geometry("500x500")
 
-        # Variables to store form data
         self.gym_member = tk.StringVar()
         self.subscription_plan = tk.StringVar()
         self.payment_method = tk.StringVar()
         self.discount = tk.StringVar(value="0")
         self.loyalty_points = tk.StringVar(value="0")
 
-        # Member Dropdown
         ttk.Label(self, text="Member").grid(row=0, column=0, padx=10, pady=5, sticky="w")
         gym_members = self.gym_member_service.get_gym_members_with_no_active_subscriptions()
         self.gym_member_names = [f"{member.first_name} {member.last_name}" for member in gym_members]
@@ -39,7 +37,6 @@ class CreateSubscriptionForm(tk.Toplevel):
         )
         self.gym_member_dropdown.grid(row=0, column=1, padx=10, pady=5)
 
-        # Subscription Plan Dropdown
         ttk.Label(self, text="Subscription Plan").grid(row=1, column=0, padx=10, pady=5, sticky="w")
         self.subscription_plan_dropdown = ttk.Combobox(
             self,
@@ -49,7 +46,6 @@ class CreateSubscriptionForm(tk.Toplevel):
         )
         self.subscription_plan_dropdown.grid(row=1, column=1, padx=10, pady=5)
 
-        # Payment Method Dropdown
         ttk.Label(self, text="Payment Method").grid(row=2, column=0, padx=10, pady=5, sticky="w")
         self.payment_method_dropdown = ttk.Combobox(
             self,
@@ -59,17 +55,14 @@ class CreateSubscriptionForm(tk.Toplevel):
         )
         self.payment_method_dropdown.grid(row=2, column=1, padx=10, pady=5)
 
-        # Discount
         ttk.Label(self, text="Discount (%)").grid(row=3, column=0, padx=10, pady=5, sticky="w")
         self.discount_entry = ttk.Entry(self, textvariable=self.discount)
         self.discount_entry.grid(row=3, column=1, padx=10, pady=5)
 
-        # Loyalty Points
         ttk.Label(self, text="Loyalty Points").grid(row=4, column=0, padx=10, pady=5, sticky="w")
         self.loyalty_points_entry = ttk.Entry(self, textvariable=self.loyalty_points)
         self.loyalty_points_entry.grid(row=4, column=1, padx=10, pady=5)
 
-        # Buttons
         ttk.Button(self, text="Save", command=self.save_subscription).grid(row=5, column=0, padx=10, pady=10)
         ttk.Button(self, text="Cancel", command=self.close_form).grid(row=5, column=1, padx=10, pady=10)
 

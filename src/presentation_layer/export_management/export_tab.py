@@ -11,7 +11,6 @@ class ExportTab(ttk.Frame):
         self.action_frame = ttk.Frame(self)
         self.action_frame.grid(row=0, column=0, sticky='ew', padx=10, pady=5)
 
-        # Buttons
         self.export_button = ttk.Button(self.action_frame, text="Export Data", command=self.export_data)
         self.export_button.pack(side='left', padx=5)
 

@@ -15,7 +15,6 @@ class UpdateGymMemberForm(tk.Toplevel):
         self.title("Update Gym Member")
         self.geometry("400x500")
 
-        # Variables to store form data
         self.first_name = tk.StringVar()
         self.last_name = tk.StringVar()
         self.email = tk.StringVar()
@@ -24,26 +23,20 @@ class UpdateGymMemberForm(tk.Toplevel):
         self.height = tk.StringVar()
         self.weight = tk.StringVar()
 
-        # Load existing member data
         self.load_member_data()
 
-        # First Name
         ttk.Label(self, text="First Name").grid(row=0, column=0, padx=10, pady=5, sticky="w")
         ttk.Entry(self, textvariable=self.first_name).grid(row=0, column=1, padx=10, pady=5, sticky="ew")
 
-        # Last Name
         ttk.Label(self, text="Last Name").grid(row=1, column=0, padx=10, pady=5, sticky="w")
         ttk.Entry(self, textvariable=self.last_name).grid(row=1, column=1, padx=10, pady=5, sticky="ew")
 
-        # Email
         ttk.Label(self, text="Email").grid(row=2, column=0, padx=10, pady=5, sticky="w")
         ttk.Entry(self, textvariable=self.email).grid(row=2, column=1, padx=10, pady=5, sticky="ew")
 
-        # Phone Number
         ttk.Label(self, text="Phone Number").grid(row=3, column=0, padx=10, pady=5, sticky="w")
         ttk.Entry(self, textvariable=self.phone_number).grid(row=3, column=1, padx=10, pady=5, sticky="ew")
 
-        # Membership Type
         ttk.Label(self, text="Membership Type").grid(row=4, column=0, padx=10, pady=5, sticky="w")
         membership_dropdown = ttk.Combobox(
             self,
@@ -53,19 +46,15 @@ class UpdateGymMemberForm(tk.Toplevel):
         )
         membership_dropdown.grid(row=4, column=1, padx=10, pady=5, sticky="ew")
 
-        # Height
         ttk.Label(self, text="Height (cm)").grid(row=5, column=0, padx=10, pady=5, sticky="w")
         ttk.Entry(self, textvariable=self.height).grid(row=5, column=1, padx=10, pady=5, sticky="ew")
 
-        # Weight
         ttk.Label(self, text="Weight (kg)").grid(row=6, column=0, padx=10, pady=5, sticky="w")
         ttk.Entry(self, textvariable=self.weight).grid(row=6, column=1, padx=10, pady=5, sticky="ew")
 
-        # Buttons
         ttk.Button(self, text="Update", command=self.update_member).grid(row=7, column=0, padx=10, pady=10)
         ttk.Button(self, text="Cancel", command=self.close_form).grid(row=7, column=1, padx=10, pady=10)
 
-        # Configure column weights
         self.grid_columnconfigure(1, weight=1)
 
     def load_member_data(self):

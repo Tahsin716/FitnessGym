@@ -10,18 +10,15 @@ class SubscriptionTab(ttk.Frame):
     def __init__(self, parent):
         ttk.Frame.__init__(self, parent)
 
-        # Configure grid layout
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
         self.subscription_service = SubscriptionService()
         self.gym_member_service = GymMemberService()
 
-        # Action Frame
         self.action_frame = ttk.Frame(self)
         self.action_frame.grid(row=0, column=0, sticky='ew', padx=10, pady=5)
 
-        # Buttons
         self.create_button = ttk.Button(
             self.action_frame,
             text="Create Subscription",
@@ -43,13 +40,11 @@ class SubscriptionTab(ttk.Frame):
         )
         self.cancel_button.pack(side='left', padx=5)
 
-        # Treeview with Columns
         self.tree = ttk.Treeview(self, columns=(
             'ID', 'Member', 'Plan', 'Monthly Rate', 'Payment Method',
             'Discount', 'Loyalty Points', 'Status'
         ), show='headings')
 
-        # Configure column headings and widths
         columns_config = [
             ('ID', 50),
             ('Member', 150),
@@ -65,28 +60,21 @@ class SubscriptionTab(ttk.Frame):
             self.tree.heading(col, text=col)
             self.tree.column(col, width=width, anchor='center', stretch=True)
 
-        # Scrollbar
         scrollbar = ttk.Scrollbar(self, orient="vertical", command=self.tree.yview)
         self.tree.configure(yscrollcommand=scrollbar.set)
 
-        # Grid placement of Treeview and Scrollbar
         self.tree.grid(row=1, column=0, sticky='nsew', padx=10, pady=10)
         scrollbar.grid(row=1, column=1, sticky='ns')
 
-        # Initial data refresh
         self.refresh_data()
 
     def refresh_data(self):
-        # Clear existing tree data
         for item in self.tree.get_children():
             self.tree.delete(item)
 
-        # Fetch all subscriptions
         subscriptions = self.subscription_service.get_all()
 
-        # Populate tree
         for subscription in subscriptions:
-            # Fetch member details
             success, message, member = self.gym_member_service.get_by_id(subscription.member_id)
             member_name = f"{member.first_name} {member.last_name}" if success else "Unknown Member"
 
@@ -115,10 +103,8 @@ class SubscriptionTab(ttk.Frame):
             messagebox.showwarning("Warning", "Please select a subscription to update")
             return
 
-        # Get subscription data from selected item
         subscription_data = self.tree.item(selected_item[0], 'values')
 
-        # Create a dictionary with subscription details
         update_data = {
             'id': subscription_data[0],
             'member': subscription_data[1],
@@ -142,7 +128,6 @@ class SubscriptionTab(ttk.Frame):
             messagebox.showwarning("Warning", "Please select a subscription to cancel")
             return
 
-        # Get subscription ID from selected item
         subscription_data = self.tree.item(selected_item[0], 'values')
         subscription_id = subscription_data[0]
 

@@ -12,7 +12,6 @@ class AppointmentTab(ttk.Frame):
     def __init__(self, parent):
         ttk.Frame.__init__(self, parent)
 
-        # Configure grid layout
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
@@ -21,11 +20,9 @@ class AppointmentTab(ttk.Frame):
         self.staff_member_service = StaffMemberService()
         self.gym_member_service = GymMemberService()
 
-        # Action Frame
         self.action_frame = ttk.Frame(self)
         self.action_frame.grid(row=0, column=0, sticky='ew', padx=10, pady=5)
 
-        # Buttons
         self.create_button = ttk.Button(
             self.action_frame,
             text="Create Appointment",
@@ -47,7 +44,6 @@ class AppointmentTab(ttk.Frame):
         )
         self.delete_button.pack(side='left', padx=5)
 
-        # Treeview with Columns
         self.tree = ttk.Treeview(self, columns=(
             'ID', 'Member', 'Gym', 'Staff', 'Appointment Type',
             'Scheduled Date', 'Status', 'Duration'
@@ -69,36 +65,27 @@ class AppointmentTab(ttk.Frame):
             self.tree.heading(col, text=col)
             self.tree.column(col, width=width, anchor='center', stretch=True)
 
-        # Scrollbar
         scrollbar = ttk.Scrollbar(self, orient="vertical", command=self.tree.yview)
         self.tree.configure(yscrollcommand=scrollbar.set)
 
-        # Grid placement of Treeview and Scrollbar
         self.tree.grid(row=1, column=0, sticky='nsew', padx=10, pady=10)
         scrollbar.grid(row=1, column=1, sticky='ns')
 
-        # Initial data refresh
         self.refresh_data()
 
     def refresh_data(self):
-        # Clear existing tree data
         for item in self.tree.get_children():
             self.tree.delete(item)
 
-        # Fetch all appointments
         appointments = self.appointment_service.get_all()
 
-        # Populate tree
         for appointment in appointments:
-            # Fetch member details
             success, message, member = self.gym_member_service.get_by_id(appointment.member_id)
             member_name = f"{member.first_name} {member.last_name}" if success else "Unknown Member"
 
-            # Fetch gym details
             success, message, gym = self.gym_service.get_gym_by_id(appointment.gym_id)
             gym_location = gym.location if success else "Unknown Gym"
 
-            # Fetch staff details
             success, message, staff = self.staff_member_service.get_by_id(appointment.staff_id)
             staff_name = f"{staff.first_name} {staff.last_name}" if success else "Unknown Staff"
 
@@ -129,10 +116,8 @@ class AppointmentTab(ttk.Frame):
             messagebox.showwarning("Warning", "Please select an appointment to update")
             return
 
-        # Get appointment data from selected item
         appointment_data = self.tree.item(selected_item[0], 'values')
 
-        # Create a dictionary with appointment details
         update_data = {
             'id': appointment_data[0],
             'member': appointment_data[1],
@@ -159,7 +144,6 @@ class AppointmentTab(ttk.Frame):
             messagebox.showwarning("Warning", "Please select an appointment to delete")
             return
 
-        # Get appointment ID from selected item
         appointment_data = self.tree.item(selected_item[0], 'values')
         appointment_id = appointment_data[0]
 

@@ -10,18 +10,15 @@ class StaffMemberTab(ttk.Frame):
     def __init__(self, parent):
         ttk.Frame.__init__(self, parent)
 
-        # Configure grid layout
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(0, weight=1)
 
         self.staff_member_service = StaffMemberService()
         self.gym_service = GymService()
 
-        # Action Frame
         self.action_frame = ttk.Frame(self)
         self.action_frame.grid(row=0, column=0, sticky='ew', padx=10, pady=5)
 
-        # Buttons
         self.create_button = ttk.Button(self.action_frame, text="Create Staff Member", command=self.create_staff_member)
         self.create_button.pack(side='left', padx=5)
 
@@ -31,13 +28,11 @@ class StaffMemberTab(ttk.Frame):
         self.delete_button = ttk.Button(self.action_frame, text="Delete Staff Member", command=self.delete_staff_member)
         self.delete_button.pack(side='left', padx=5)
 
-        # Treeview with Scrollbar
         self.tree = ttk.Treeview(self, columns=(
             'ID', 'First Name', 'Last Name', 'Email',
             'Phone Number', 'Role', 'Gym Location'
         ), show='headings')
 
-        # Configure column headings and widths
         columns_config = [
             ('ID', 50),
             ('First Name', 100),
@@ -52,11 +47,9 @@ class StaffMemberTab(ttk.Frame):
             self.tree.heading(col, text=col)
             self.tree.column(col, width=width, anchor='center', stretch=True)
 
-        # Scrollbar
         scrollbar = ttk.Scrollbar(self, orient="vertical", command=self.tree.yview)
         self.tree.configure(yscrollcommand=scrollbar.set)
 
-        # Grid placement of Treeview and Scrollbar
         self.tree.grid(row=1, column=0, sticky='nsew', padx=10, pady=10)
         scrollbar.grid(row=1, column=1, sticky='ns')
 

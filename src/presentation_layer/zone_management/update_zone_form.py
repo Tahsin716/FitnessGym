@@ -23,31 +23,25 @@ class UpdateZoneForm(tk.Toplevel):
         self.title("Update Zone")
         self.geometry("400x300")
 
-        # Variables to store form data
         self.gym_location = tk.StringVar()
         self.zone_type = tk.StringVar()
         self.attendant = tk.StringVar()
 
-        # Populate gym locations
         gyms = self.gym_service.get_all_gyms()
         self.gym_locations = [gym.location for gym in gyms]
         self.gym_ids = {gym.location: gym.id for gym in gyms}
 
-        # Get initial gym location
         success, message, initial_gym = self.gym_service.get_gym_by_id(zone.gym_id)
         self.gym_location.set(initial_gym.location)
 
-        # Populate attendants for initial gym
         attendants = self.staff_member_service.get_all_by_role_and_gym(Role.ATTENDANT, zone.gym_id)
         self.attendant_names = [f"{staff.first_name} {staff.last_name}" for staff in attendants]
         self.attendant_ids = {f"{staff.first_name} {staff.last_name}": staff.id for staff in attendants}
 
-        # Get initial attendant
         success, message, initial_staff = self.staff_member_service.get_by_id(zone.attendant_id)
         initial_attendant_name = f"{initial_staff.first_name} {initial_staff.last_name}"
         self.attendant.set(initial_attendant_name)
 
-        # Gym Location Dropdown
         ttk.Label(self, text="Gym Location").grid(row=0, column=0, padx=10, pady=5, sticky="w")
         self.gym_location_dropdown = ttk.Combobox(
             self,
@@ -58,7 +52,6 @@ class UpdateZoneForm(tk.Toplevel):
         self.gym_location_dropdown.grid(row=0, column=1, padx=10, pady=5)
         self.gym_location_dropdown.bind('<<ComboboxSelected>>', self.on_gym_location_selected)
 
-        # Zone Type Dropdown
         ttk.Label(self, text="Zone Type").grid(row=1, column=0, padx=10, pady=5, sticky="w")
         self.zone_type_dropdown = ttk.Combobox(
             self,
@@ -69,7 +62,6 @@ class UpdateZoneForm(tk.Toplevel):
         self.zone_type_dropdown.set(zone.zone_type.value)
         self.zone_type_dropdown.grid(row=1, column=1, padx=10, pady=5)
 
-        # Attendant Dropdown
         ttk.Label(self, text="Attendant").grid(row=2, column=0, padx=10, pady=5, sticky="w")
         self.attendant_dropdown = ttk.Combobox(
             self,
@@ -79,22 +71,17 @@ class UpdateZoneForm(tk.Toplevel):
         )
         self.attendant_dropdown.grid(row=2, column=1, padx=10, pady=5)
 
-        # Buttons
         ttk.Button(self, text="Update", command=self.update_zone).grid(row=3, column=0, padx=10, pady=10)
         ttk.Button(self, text="Cancel", command=self.close_form).grid(row=3, column=1, padx=10, pady=10)
 
     def on_gym_location_selected(self, event=None):
-        # Clear previous attendant selection
         self.attendant.set('')
 
-        # Get the selected gym's ID
         selected_gym_location = self.gym_location.get()
         selected_gym_id = self.gym_ids[selected_gym_location]
 
-        # Filter attendants by the selected gym
         attendants = self.staff_member_service.get_all_by_role_and_gym(Role.ATTENDANT, selected_gym_id)
 
-        # Populate attendant dropdown
         if attendants:
             self.attendant_names = [f"{staff.first_name} {staff.last_name}" for staff in attendants]
             self.attendant_ids = {f"{staff.first_name} {staff.last_name}": staff.id for staff in attendants}
@@ -106,7 +93,6 @@ class UpdateZoneForm(tk.Toplevel):
             self.attendant_dropdown['state'] = 'disabled'
 
     def update_zone(self):
-        # Validate inputs
         if not self.gym_location.get():
             messagebox.showerror("Error", "Please select a gym location")
             return

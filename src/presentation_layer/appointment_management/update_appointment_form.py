@@ -28,7 +28,6 @@ class UpdateAppointmentForm(tk.Toplevel):
         self.title("Update Appointment")
         self.geometry("500x500")
 
-        # Variables to store form data
         self.gym_location = tk.StringVar(value=appointment_data['gym'])
         self.gym_member = tk.StringVar(value=appointment_data['member'])
         self.staff_member = tk.StringVar(value=appointment_data['staff'])
@@ -37,12 +36,10 @@ class UpdateAppointmentForm(tk.Toplevel):
         self.duration = tk.StringVar(value=str(appointment_data['duration']))
         self.appointment_id = appointment_data['id']
 
-        # Populate gym locations
         gyms = self.gym_service.get_all_gyms()
         self.gym_locations = [gym.location for gym in gyms]
         self.gym_ids = {gym.location: gym.id for gym in gyms}
 
-        # Gym Location Dropdown
         ttk.Label(self, text="Gym Location").grid(row=0, column=0, padx=10, pady=5, sticky="w")
         self.gym_location_dropdown = ttk.Combobox(
             self,
@@ -53,7 +50,6 @@ class UpdateAppointmentForm(tk.Toplevel):
         self.gym_location_dropdown.grid(row=0, column=1, padx=10, pady=5)
         self.gym_location_dropdown.bind('<<ComboboxSelected>>', self.on_gym_location_selected)
 
-        # Member Dropdown
         ttk.Label(self, text="Member").grid(row=1, column=0, padx=10, pady=5, sticky="w")
         gym_members = self.gym_member_service.get_all()
         self.gym_member_names = [f"{member.first_name} {member.last_name}" for member in gym_members]
@@ -67,7 +63,6 @@ class UpdateAppointmentForm(tk.Toplevel):
         )
         self.gym_member_dropdown.grid(row=1, column=1, padx=10, pady=5)
 
-        # Appointment Type Dropdown
         ttk.Label(self, text="Appointment Type").grid(row=2, column=0, padx=10, pady=5, sticky="w")
         self.appointment_type_dropdown = ttk.Combobox(
             self,
@@ -78,7 +73,6 @@ class UpdateAppointmentForm(tk.Toplevel):
         self.appointment_type_dropdown.grid(row=2, column=1, padx=10, pady=5)
         self.appointment_type_dropdown.bind('<<ComboboxSelected>>', self.on_appointment_type_selected)
 
-        # Staff Dropdown (dynamically populated)
         ttk.Label(self, text="Staff").grid(row=3, column=0, padx=10, pady=5, sticky="w")
         self.staff_dropdown = ttk.Combobox(
             self,
@@ -87,12 +81,10 @@ class UpdateAppointmentForm(tk.Toplevel):
         )
         self.staff_dropdown.grid(row=3, column=1, padx=10, pady=5)
 
-        # Schedule Date
         ttk.Label(self, text="Schedule Date(YYYY-MM-DD)").grid(row=4, column=0, padx=10, pady=5, sticky="w")
         self.schedule_date_entry = ttk.Entry(self, textvariable=self.schedule_date)
         self.schedule_date_entry.grid(row=4, column=1, padx=10, pady=5)
 
-        # Duration
         ttk.Label(self, text="Duration (minutes)").grid(row=5, column=0, padx=10, pady=5, sticky="w")
         self.duration_dropdown = ttk.Combobox(
             self,
@@ -102,7 +94,6 @@ class UpdateAppointmentForm(tk.Toplevel):
         )
         self.duration_dropdown.grid(row=5, column=1, padx=10, pady=5)
 
-        # Buttons
         ttk.Button(self, text="Update", command=self.update_appointment).grid(row=6, column=0, padx=10, pady=10)
         ttk.Button(self, text="Cancel", command=self.close_form).grid(row=6, column=1, padx=10, pady=10)
 
@@ -112,11 +103,9 @@ class UpdateAppointmentForm(tk.Toplevel):
 
 
     def on_gym_location_selected(self, event=None):
-        # Clear previous staff selection
         self.staff_member.set('')
         staff_members = []
 
-        # Get the selected gym's ID
         selected_gym_location = self.gym_location.get()
         selected_gym_id = self.gym_ids[selected_gym_location]
 
@@ -130,7 +119,6 @@ class UpdateAppointmentForm(tk.Toplevel):
 
             staff_members = self.staff_member_service.get_all_by_role_and_gym(role, selected_gym_id)
 
-        # Populate staff dropdown
         if staff_members:
             staff_names = [f"{staff.first_name} {staff.last_name}" for staff in staff_members]
             self.staff_member_ids = {f"{staff.first_name} {staff.last_name}": staff.id for staff in staff_members}
@@ -142,7 +130,6 @@ class UpdateAppointmentForm(tk.Toplevel):
             self.staff_dropdown['state'] = 'disabled'
 
     def on_appointment_type_selected(self, event=None):
-        # This will trigger staff dropdown population based on gym and appointment type
         self.on_gym_location_selected()
 
     def update_appointment(self):
