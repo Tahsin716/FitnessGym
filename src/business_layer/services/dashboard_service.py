@@ -5,6 +5,7 @@ from src.business_layer.services.attendance_service import AttendanceService
 from src.business_layer.services.gym_service import GymService
 from src.business_layer.services.payment_service import PaymentService
 from src.business_layer.services.subscription_service import SubscriptionService
+from src.business_layer.utils.common import Common
 from src.data_layer.entities.attendance import Attendance
 from src.data_layer.enum.appointment_type import AppointmentType
 from src.data_layer.enum.subscription_plan import SubscriptionPlan
@@ -93,7 +94,7 @@ class DashboardService:
                 "Total": len(current_month_attendances),
                 "PopularGymLocation": self.__get_popular_gym_location(current_month_attendances),
                 "PeakHour": self.__get_peak_hour(current_month_attendances),
-                "TotalDuration": sum(attendance.duration for attendance in current_month_attendances)
+                "TotalDuration": self.__get_total_duration(current_month_attendances)
             }
 
     def __get_popular_gym_location(self, attendances : list[Attendance]) -> str:
@@ -105,6 +106,26 @@ class DashboardService:
 
         return popular_gym.location
 
-    def __get_peak_hour(self, attendances : list[Attendance]):
-        pass
+    @staticmethod
+    def __get_total_duration(attendances : list[Attendance]) -> str:
+        return Common.convert_minutes_to_hours_and_minutes_str(sum(attendance.duration for attendance in attendances))
+
+    @staticmethod
+    def __get_peak_hour(attendances: list[Attendance]) -> str:
+        hours = [int(attendance.checkin_time.split(':')[0]) for attendance in attendances]
+        hour_counter = Counter(hours)
+
+        if not hour_counter:
+            return "No Peak Hour"
+
+        peak_hour, _ = hour_counter.most_common(1)[0]
+
+        if peak_hour == 0:
+            return "12 AM"
+        elif peak_hour < 12:
+            return f"{peak_hour} AM"
+        elif peak_hour == 12:
+            return "12 PM"
+        else:
+            return f"{peak_hour - 12} PM"
 
