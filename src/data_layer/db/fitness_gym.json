@@ -190,9 +190,57 @@
       "phone_number": "555-654-3210",
       "role": "Attendant",
       "gym_id": "566610be"
+    },
+    {
+      "_id": "d3e48cef",
+      "create_date": "2024-12-17",
+      "first_name": "Muto",
+      "last_name": "Aydemir",
+      "email": "muto@example.com",
+      "phone_number": "44123156",
+      "role": "Trainer",
+      "gym_id": "566610be"
+    },
+    {
+      "_id": "e815e207",
+      "create_date": "2024-12-17",
+      "first_name": "Esat",
+      "last_name": "Gokcen",
+      "email": "esat@example.com",
+      "phone_number": "441231321",
+      "role": "Trainer",
+      "gym_id": "566610be"
     }
   ],
-  "Payments": [],
+  "Payments": [
+    {
+      "_id": "06f1114e",
+      "create_date": "2024-12-17",
+      "member_id": "h6f231j",
+      "subscription_plan": "monthly",
+      "appointment_ids": [],
+      "payment_method": "credit card",
+      "amount": 39.0
+    },
+    {
+      "_id": "985bd8dc",
+      "create_date": "2024-12-17",
+      "member_id": "gsa4122",
+      "subscription_plan": "quarterly",
+      "appointment_ids": [],
+      "payment_method": "credit card",
+      "amount": 47.0
+    },
+    {
+      "_id": "895f3a22",
+      "create_date": "2024-12-17",
+      "member_id": "vvb2131",
+      "subscription_plan": "annual",
+      "appointment_ids": [],
+      "payment_method": "credit card",
+      "amount": 50.0
+    }
+  ],
   "Subscriptions": [
     {
       "_id": "a735d1f7",
@@ -203,9 +251,66 @@
       "discount": 0.0,
       "active": true,
       "loyalty_points": 0
+    },
+    {
+      "_id": "3311538d",
+      "create_date": "2024-12-17",
+      "member_id": "gsa4122",
+      "subscription_plan": "quarterly",
+      "payment_method": "credit card",
+      "discount": 0.0,
+      "active": true,
+      "loyalty_points": 0
+    },
+    {
+      "_id": "80da10e6",
+      "create_date": "2024-12-17",
+      "member_id": "vvb2131",
+      "subscription_plan": "annual",
+      "payment_method": "credit card",
+      "discount": 0.0,
+      "active": true,
+      "loyalty_points": 0
     }
   ],
-  "Appointments": [],
+  "Appointments": [
+    {
+      "_id": "49c71f2a",
+      "create_date": "2024-12-17",
+      "member_id": "h6f231j",
+      "gym_id": "566610be",
+      "staff_id": "d3e48cef",
+      "appointment_type": "personal training",
+      "schedule_date": "2024-12-09",
+      "status": "active",
+      "duration": 30,
+      "is_paid": true
+    },
+    {
+      "_id": "2a08d8e4",
+      "create_date": "2024-12-17",
+      "member_id": "gsa4122",
+      "gym_id": "566610be",
+      "staff_id": "e815e207",
+      "appointment_type": "group class",
+      "schedule_date": "2024-12-18",
+      "status": "active",
+      "duration": 30,
+      "is_paid": true
+    },
+    {
+      "_id": "fca2ed66",
+      "create_date": "2024-12-17",
+      "member_id": "vvb2131",
+      "gym_id": "566610be",
+      "staff_id": "d8e7a9bc",
+      "appointment_type": "nutrition consultation",
+      "schedule_date": "2024-12-21",
+      "status": "active",
+      "duration": 30,
+      "is_paid": true
+    }
+  ],
   "Attendances": [
     {
       "_id": "350a65b0",

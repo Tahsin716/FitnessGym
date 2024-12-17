@@ -9,6 +9,7 @@ class Application:
     def __init__(self):
         root = tk.Tk()
         root.title("Fitness Gym")
+        root.lift()
         root.geometry("{0}x{1}+0+0".format(root.winfo_screenwidth() - 50, root.winfo_screenheight() - 50))
 
         container = ttk.Frame()

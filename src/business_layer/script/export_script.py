@@ -129,9 +129,10 @@ class ExportScript:
                 "create_date": appointment.create_date,
                 "member_id": appointment.member_id,
                 "gym_id": appointment.gym_id,
+                "staff_id": appointment.staff_id,
                 "appointment_type": appointment.appointment_type.value,
                 "schedule_date": appointment.scheduled_date,
-                "status": appointment.status,
+                "status": appointment.status.value,
                 "duration": appointment.duration,
                 "is_paid": appointment.is_paid
             }
@@ -165,6 +166,7 @@ class ExportScript:
                 "member_id": payment.member_id,
                 "subscription_plan": payment.subscription_plan.value,
                 "appointment_ids": payment.appointment_ids,
+                "payment_method": payment.payment_method.value,
                 "amount": payment.amount
             }
             self.__export_data["Payments"].append(data)
