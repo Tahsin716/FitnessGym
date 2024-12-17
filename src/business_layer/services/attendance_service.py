@@ -31,6 +31,9 @@ class AttendanceService:
 
             data['duration'] = Common.calculate_duration(data['checkin_time'], data['checkout_time'])
 
+            if data['duration'] <= 0:
+                raise SecurityException("Duration cannot be negative or 0")
+
             attendance = self.attendance_repository.create(data)
             return True, "", attendance
         except SecurityException as e:

@@ -4,6 +4,7 @@ from src.business_layer.services.attendance_service import AttendanceService
 from src.business_layer.services.gym_member_service import GymMemberService
 from src.business_layer.services.gym_service import GymService
 from src.business_layer.services.zone_service import ZoneService
+from src.business_layer.utils.common import Common
 from src.presentation_layer.attendance_management.create_attendance_form import CreateAttendanceForm
 
 
@@ -73,7 +74,7 @@ class AttendanceTab(ttk.Frame):
                 zone_type,
                 attendance.checkin_time,
                 attendance.checkout_time,
-                f"{attendance.duration} minutes"
+                Common.convert_minutes_to_hours_and_minutes_str(attendance.duration)
             ))
 
     def create_attendance(self):

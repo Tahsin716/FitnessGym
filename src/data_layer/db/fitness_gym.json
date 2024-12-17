@@ -216,6 +216,16 @@
       "checkin_time": "10:00",
       "checkout_time": "10:30",
       "duration": 30
+    },
+    {
+      "_id": "375455a5",
+      "create_date": "2024-12-17",
+      "member_id": "gsa4122",
+      "gym_id": "566610be",
+      "zone_id": "d4e5f6a1",
+      "checkin_time": "11:00",
+      "checkout_time": "12:15",
+      "duration": 75
     }
   ]
 }
