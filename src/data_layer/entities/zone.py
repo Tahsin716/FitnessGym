@@ -2,7 +2,7 @@ from src.data_layer.entities.base_entity import BaseEntity
 from src.data_layer.enum.zone_type import ZoneType
 
 
-class WorkoutZone(BaseEntity):
+class Zone(BaseEntity):
     def __init__(self, data : dict):
         _id = data.get('_id', None)
         create_date = data.get('create_date', None)

@@ -2,7 +2,7 @@ import logging
 from typing import Tuple
 
 from src.business_layer.exception.security_exception import SecurityException
-from src.data_layer.entities.workout_zone import WorkoutZone
+from src.data_layer.entities.zone import Zone
 from src.data_layer.enum.zone_type import ZoneType
 from src.data_layer.repository.zone_repository import ZoneRepository
 
@@ -11,7 +11,7 @@ class ZoneService:
     def __init__(self):
         self.zone_repository = ZoneRepository()
 
-    def create(self, data: dict) -> Tuple[bool, str, WorkoutZone | None]:
+    def create(self, data: dict) -> Tuple[bool, str, Zone | None]:
         try:
             if not data:
                 raise SecurityException("Data cannot be empty")
@@ -34,7 +34,7 @@ class ZoneService:
             logging.error(f"Error occurred while saving zone: {str(e)}")
             return False, str(e), None
 
-    def update(self, _id: str, data: dict) -> Tuple[bool, str, WorkoutZone | None]:
+    def update(self, _id: str, data: dict) -> Tuple[bool, str, Zone | None]:
         try:
             if not data:
                 raise SecurityException("Data cannot be empty")
@@ -60,10 +60,10 @@ class ZoneService:
             logging.error(f"Error occurred while updating zone: {str(e)}")
             return False, str(e), None
 
-    def get_all_zones(self) -> list[WorkoutZone]:
+    def get_all_zones(self) -> list[Zone]:
         return self.zone_repository.get_all_zones()
 
-    def get_zone_by_id(self, _id: str) -> Tuple[bool, str, WorkoutZone | None]:
+    def get_zone_by_id(self, _id: str) -> Tuple[bool, str, Zone | None]:
         try:
             zone = self.zone_repository.get_zone_by_id(_id)
 
@@ -75,7 +75,7 @@ class ZoneService:
             logging.error(f"SecurityException occurred while retrieving zone: {str(e)}")
             return False, str(e), None
 
-    def get_zones_by_gym_id(self, gym_id : str) -> list[WorkoutZone]:
+    def get_zones_by_gym_id(self, gym_id : str) -> list[Zone]:
         zones = self.get_all_zones()
         return [zone for zone in zones if zone.gym_id == gym_id]
 
