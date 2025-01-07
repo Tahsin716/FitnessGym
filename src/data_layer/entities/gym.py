@@ -3,7 +3,6 @@ from dataclasses import dataclass
 from src.data_layer.entities.base_entity import BaseEntity
 
 
-@dataclass
 class Gym(BaseEntity):
     def __init__(self, data: dict):
         _id = data.get('_id', None)
