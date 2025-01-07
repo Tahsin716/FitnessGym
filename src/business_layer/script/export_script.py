@@ -202,7 +202,6 @@ class ExportScript:
 
         file_path = os.path.join(Config.DB_PATH, Config.DB_NAME)
 
-        # Ensure the directory exists
         os.makedirs(Config.DB_PATH, exist_ok=True)
 
         serializable_data = self._make_serializable(self.__export_data)
