@@ -7,12 +7,12 @@ from typing import Tuple
 from src.business_layer.providers.config import Config
 from src.business_layer.services.appointment_service import AppointmentService
 from src.business_layer.services.attendance_service import AttendanceService
+from src.business_layer.services.gym_member_service import GymMemberService
 from src.business_layer.services.gym_service import GymService
 from src.business_layer.services.payment_service import PaymentService
 from src.business_layer.services.staff_member_service import StaffMemberService
 from src.business_layer.services.subscription_service import SubscriptionService
 from src.business_layer.services.zone_service import ZoneService
-from src.business_layer.services.gym_member_service import GymMemberService
 
 
 class ExportScript:

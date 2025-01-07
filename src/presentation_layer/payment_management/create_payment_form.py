@@ -1,5 +1,5 @@
-from tkinter import ttk, messagebox
 import tkinter as tk
+from tkinter import ttk, messagebox
 
 from src.business_layer.services.appointment_service import AppointmentService
 from src.business_layer.services.gym_member_service import GymMemberService

@@ -1,5 +1,3 @@
-from dataclasses import dataclass
-
 from src.data_layer.entities.base_entity import BaseEntity
 
 
