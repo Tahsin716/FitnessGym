@@ -87,34 +87,31 @@ class CreateAttendanceForm(tk.Toplevel):
         pass
 
     def create_attendance(self):
-        try:
-            if not all([self.selected_gym.get(), self.selected_member.get(),
-                        self.selected_zone.get(), self.checkin_time.get(),
-                        self.checkout_time.get()]):
-                messagebox.showerror("Error", "All fields are required")
-                return
+        if not all([self.selected_gym.get(), self.selected_member.get(),
+                    self.selected_zone.get(), self.checkin_time.get(),
+                    self.checkout_time.get()]):
+            messagebox.showerror("Error", "All fields are required")
+            self.focus()
+            return
 
-            gym_id = self.selected_gym.get().split('(')[1].strip(')')
-            member_id = self.selected_member.get().split('(')[1].strip(')')
-            zone_id = self.selected_zone.get().split('(')[1].strip(')')
+        gym_id = self.selected_gym.get().split('(')[1].strip(')')
+        member_id = self.selected_member.get().split('(')[1].strip(')')
+        zone_id = self.selected_zone.get().split('(')[1].strip(')')
 
-            attendance_data = {
-                'gym_id': gym_id,
-                'member_id': member_id,
-                'zone_id': zone_id,
-                'checkin_time': self.checkin_time.get(),
-                'checkout_time': self.checkout_time.get()
-            }
+        attendance_data = {
+            'gym_id': gym_id,
+            'member_id': member_id,
+            'zone_id': zone_id,
+            'checkin_time': self.checkin_time.get(),
+            'checkout_time': self.checkout_time.get()
+        }
 
-            success, message, _ = self.attendance_service.create(attendance_data)
+        success, message, _ = self.attendance_service.create(attendance_data)
 
-            if success:
-                messagebox.showinfo("Success", "Attendance created successfully")
-                self.callback()
-                self.destroy()
-            else:
-                messagebox.showerror("Error", message)
-                self.focus()
-
-        except Exception as e:
-            messagebox.showerror("Error", str(e))
+        if success:
+            messagebox.showinfo("Success", "Attendance created successfully")
+            self.callback()
+            self.destroy()
+        else:
+            messagebox.showerror("Error", message)
+            self.focus()
