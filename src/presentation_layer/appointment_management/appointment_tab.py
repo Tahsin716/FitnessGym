@@ -37,19 +37,25 @@ class AppointmentTab(ttk.Frame):
         )
         self.update_button.pack(side='left', padx=5)
 
-        self.delete_button = ttk.Button(
+        self.complete_button = ttk.Button(
             self.action_frame,
-            text="Delete Appointment",
-            command=self.delete_appointment
+            text="Complete Appointment",
+            command=self.complete_appointment
         )
-        self.delete_button.pack(side='left', padx=5)
+        self.complete_button.pack(side='left', padx=5)
+
+        self.cancel_button = ttk.Button(
+            self.action_frame,
+            text="Cancel Appointment",
+            command=self.cancel_appointment
+        )
+        self.cancel_button.pack(side='left', padx=5)
 
         self.tree = ttk.Treeview(self, columns=(
             'ID', 'Member', 'Gym', 'Staff', 'Appointment Type',
             'Scheduled Date', 'Status', 'Duration'
         ), show='headings')
 
-        # Configure column headings and widths
         columns_config = [
             ('ID', 50),
             ('Member', 150),
@@ -138,20 +144,38 @@ class AppointmentTab(ttk.Frame):
             self.refresh_data
         )
 
-    def delete_appointment(self):
+    def complete_appointment(self):
         selected_item = self.tree.selection()
         if not selected_item:
-            messagebox.showwarning("Warning", "Please select an appointment to delete")
+            messagebox.showwarning("Warning", "Please select an appointment to complete")
             return
 
         appointment_data = self.tree.item(selected_item[0], 'values')
         appointment_id = appointment_data[0]
 
-        if messagebox.askyesno("Confirm", "Are you sure you want to delete the appointment"):
-            success, message = self.appointment_service.delete(appointment_id)
+        if messagebox.askyesno("Confirm", "Are you sure you want to complete the appointment"):
+            success, message = self.appointment_service.complete(appointment_id)
 
             if not success:
                 messagebox.showerror("Error", message)
             else:
-                messagebox.showinfo("Success", "Successfully deleted appointment")
+                messagebox.showinfo("Success", "Successfully completed appointment")
+                self.refresh_data()
+
+    def cancel_appointment(self):
+        selected_item = self.tree.selection()
+        if not selected_item:
+            messagebox.showwarning("Warning", "Please select an appointment to cancel")
+            return
+
+        appointment_data = self.tree.item(selected_item[0], 'values')
+        appointment_id = appointment_data[0]
+
+        if messagebox.askyesno("Confirm", "Are you sure you want to cancel the appointment"):
+            success, message = self.appointment_service.cancel(appointment_id)
+
+            if not success:
+                messagebox.showerror("Error", message)
+            else:
+                messagebox.showinfo("Success", "Successfully cancelled appointment")
                 self.refresh_data()

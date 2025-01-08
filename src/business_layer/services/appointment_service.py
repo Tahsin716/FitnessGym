@@ -5,6 +5,7 @@ from typing import Tuple, List
 from src.business_layer.exception.security_exception import SecurityException
 from src.business_layer.utils.validation import Validator
 from src.data_layer.entities.appointment import Appointment
+from src.data_layer.enum.appointment_status import AppointmentStatus
 from src.data_layer.enum.appointment_type import AppointmentType
 from src.data_layer.repository.appointment_repository import AppointmentRepository
 
@@ -110,7 +111,7 @@ class AppointmentService:
 
     def get_appointment_with_pending_payment_by_member_id(self, member_id : str) -> list[Appointment]:
         appointments = self.appointment_repository.get_all()
-        return [appointment for appointment in appointments if appointment.member_id == member_id and not appointment.is_paid]
+        return [appointment for appointment in appointments if appointment.member_id == member_id and not appointment.is_paid and appointment.status == AppointmentStatus.ACTIVE]
 
     def complete_payment_for_appointments_by_member_id(self, member_id : str):
         appointments = self.get_appointment_with_pending_payment_by_member_id(member_id)
@@ -130,4 +131,37 @@ class AppointmentService:
             return False, str(e)
         except Exception as e:
             logging.error(f"Error occurred while deleting appointment: {str(e)}")
+            return False, str(e)
+
+    def cancel(self, _id: str) -> Tuple[bool, str]:
+        try:
+            if self.appointment_repository.get_by_id(_id) is None:
+                raise SecurityException("No appointment exists with the given ID")
+
+            self.appointment_repository.cancel(_id)
+            return True, ""
+        except SecurityException as e:
+            logging.error(f"SecurityException occurred while cancelling appointment: {str(e)}")
+            return False, str(e)
+        except Exception as e:
+            logging.error(f"Error occurred while cancelling appointment: {str(e)}")
+            return False, str(e)
+
+    def complete(self, _id: str) -> Tuple[bool, str]:
+        try:
+            appointment = self.appointment_repository.get_by_id(_id)
+
+            if appointment is None:
+                raise SecurityException("No appointment exists with the given ID")
+
+            if not appointment.is_paid:
+                raise SecurityException("Cannot complete appointment with pending payment")
+
+            self.appointment_repository.complete(_id)
+            return True, ""
+        except SecurityException as e:
+            logging.error(f"SecurityException occurred while completing appointment: {str(e)}")
+            return False, str(e)
+        except Exception as e:
+            logging.error(f"Error occurred while completing appointment: {str(e)}")
             return False, str(e)

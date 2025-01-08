@@ -1,6 +1,7 @@
 from typing import Dict, List, cast
 
 from src.data_layer.entities.appointment import Appointment
+from src.data_layer.enum.appointment_status import AppointmentStatus
 
 
 class AppointmentRepository:
@@ -36,3 +37,13 @@ class AppointmentRepository:
     def delete(self, _id: str) -> None:
         if _id in self.__appointments:
             del self.__appointments[_id]
+
+    def cancel(self, _id: str) -> None:
+        if _id in self.__appointments:
+            appointment = self.__appointments[_id]
+            appointment.status = AppointmentStatus.CANCELLED
+
+    def complete(self, _id: str) -> None:
+        if _id in self.__appointments:
+            appointment = self.__appointments[_id]
+            appointment.status = AppointmentStatus.COMPLETED
