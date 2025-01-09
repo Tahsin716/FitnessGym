@@ -20,13 +20,13 @@ class GymTab(ttk.Frame):
         self.tree.heading('Phone Number', text='Phone Number')
         self.tree.heading('Email', text='Email')
 
-        self.create_button = ttk.Button(self.action_frame, text="Create Gym", command=self.create_gym)
+        self.create_button = ttk.Button(self.action_frame, text="Create Gym", command=self.create_gym, style="Create.TButton")
         self.create_button.pack(side='left', padx=5)
 
-        self.update_button = ttk.Button(self.action_frame, text="Update Gym", command=self.update_gym)
+        self.update_button = ttk.Button(self.action_frame, text="Update Gym", command=self.update_gym, style="Update.TButton")
         self.update_button.pack(side='left', padx=5)
 
-        self.delete_button = ttk.Button(self.action_frame, text="Delete Gym", command=self.delete_gym)
+        self.delete_button = ttk.Button(self.action_frame, text="Delete Gym", command=self.delete_gym, style="Delete.TButton")
         self.delete_button.pack(side='left', padx=5)
 
         self.action_frame.pack(fill='x', pady=5)

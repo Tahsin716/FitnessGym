@@ -21,11 +21,40 @@ class Application:
             self.frames[F.__name__] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
+        self.setup_button_styles()
         self.show_frame("MainPage")
         root.mainloop()
 
     def show_frame(self, page_name):
         frame = self.frames[page_name]
         frame.tkraise()
+
+    def setup_button_styles(self):
+        style = ttk.Style()
+
+        style.configure(
+            'Create.TButton',
+            foreground='#119e24'
+        )
+
+        style.configure(
+            'Update.TButton',
+            foreground='#052df5'
+        )
+
+        style.configure(
+            'Complete.TButton',
+            foreground='#673AB7'
+        )
+
+        style.configure(
+            'Cancel.TButton',
+            foreground='#a6a39c'
+        )
+
+        style.configure(
+            'Delete.TButton',
+            foreground='#f44336'
+        )
 
 
