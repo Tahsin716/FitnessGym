@@ -17,7 +17,7 @@ class Appointment(BaseEntity):
         self.__staff_id : str = data['staff_id']
         self.__appointment_type : AppointmentType = data['appointment_type']
         self.__scheduled_date : datetime = data['schedule_date']
-        self.__status : AppointmentStatus = AppointmentStatus.ACTIVE
+        self.__status : AppointmentStatus = data.get('status', AppointmentStatus.ACTIVE)
         self.__duration : int = data['duration']
         self.__cost : float = self.__calculate_session_cost()
         self.__is_paid : bool = data.get('is_paid', False)

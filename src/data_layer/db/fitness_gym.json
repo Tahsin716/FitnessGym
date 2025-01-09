@@ -494,7 +494,7 @@
       "staff_id": "d8e7a9bc",
       "appointment_type": "Nutrition Consultation",
       "schedule_date": "2025-01-09",
-      "status": "Active",
+      "status": "Completed",
       "duration": 30,
       "is_paid": true
     }
