@@ -26,33 +26,6 @@
       "post_code": "WS78 9EF",
       "phone_number": "555-987-1234",
       "email": "support@westsideathletics.com"
-    },
-    {
-      "_id": "6734ff4f",
-      "create_date": "2024-12-08",
-      "location": "Eastside Gymnasium",
-      "address": "321 Eastside Street, Eastside",
-      "post_code": "ES34 5GH",
-      "phone_number": "555-321-4321",
-      "email": "hello@eastsidegym.com"
-    },
-    {
-      "_id": "920f66d6",
-      "create_date": "2024-12-08",
-      "location": "Central Fitness Hub",
-      "address": "456 Central Avenue, City Center",
-      "post_code": "CF22 7HI",
-      "phone_number": "555-456-6543",
-      "email": "contact@centralfitness.com"
-    },
-    {
-      "_id": "a19be7df",
-      "create_date": "2024-12-08",
-      "location": "Northside Strength Center",
-      "address": "654 Northside Lane, Northside",
-      "post_code": "NS91 2JK",
-      "phone_number": "555-789-8765",
-      "email": "info@northsidestrength.com"
     }
   ],
   "Zones": [
@@ -83,6 +56,62 @@
       "gym_id": "566610be",
       "zone_type": "Yoga",
       "attendant_id": "5b2a9c7f"
+    },
+    {
+      "_id": "964af354",
+      "create_date": "2025-01-09",
+      "gym_id": "17924113",
+      "zone_type": "Functional Training",
+      "attendant_id": "7e8e5398"
+    },
+    {
+      "_id": "fd189ad6",
+      "create_date": "2025-01-09",
+      "gym_id": "17924113",
+      "zone_type": "Yoga",
+      "attendant_id": "ffdc07b1"
+    },
+    {
+      "_id": "f6dcca15",
+      "create_date": "2025-01-09",
+      "gym_id": "566610be",
+      "zone_type": "Cardio",
+      "attendant_id": "d42e96da"
+    },
+    {
+      "_id": "537d497e",
+      "create_date": "2025-01-09",
+      "gym_id": "566610be",
+      "zone_type": "Strength",
+      "attendant_id": "1ebc0413"
+    },
+    {
+      "_id": "18a8262a",
+      "create_date": "2025-01-09",
+      "gym_id": "566610be",
+      "zone_type": "Functional Training",
+      "attendant_id": "d3230301"
+    },
+    {
+      "_id": "a90fbba7",
+      "create_date": "2025-01-09",
+      "gym_id": "dfd42806",
+      "zone_type": "Cardio",
+      "attendant_id": "5b8f4c9e"
+    },
+    {
+      "_id": "c9255efb",
+      "create_date": "2025-01-09",
+      "gym_id": "dfd42806",
+      "zone_type": "Strength",
+      "attendant_id": "6198a2c8"
+    },
+    {
+      "_id": "207c79be",
+      "create_date": "2025-01-09",
+      "gym_id": "dfd42806",
+      "zone_type": "Yoga",
+      "attendant_id": "5b8f4c9e"
     }
   ],
   "GymMembers": [
@@ -210,6 +239,126 @@
       "phone_number": "441231321",
       "role": "Trainer",
       "gym_id": "566610be"
+    },
+    {
+      "_id": "7e8e5398",
+      "create_date": "2025-01-09",
+      "first_name": "Jacob",
+      "last_name": "Shaddix",
+      "email": "jacob.shaddix@example.com",
+      "phone_number": "788-456-45645",
+      "role": "Attendant",
+      "gym_id": "17924113"
+    },
+    {
+      "_id": "ffdc07b1",
+      "create_date": "2025-01-09",
+      "first_name": "Marty",
+      "last_name": "Friedman",
+      "email": "marty.friedman@example.com",
+      "phone_number": "4412313788",
+      "role": "Attendant",
+      "gym_id": "17924113"
+    },
+    {
+      "_id": "2eb06ceb",
+      "create_date": "2025-01-09",
+      "first_name": "anvil",
+      "last_name": "Green",
+      "email": "anvil.green@example.com",
+      "phone_number": "442137897",
+      "role": "Trainer",
+      "gym_id": "17924113"
+    },
+    {
+      "_id": "1b0ea123",
+      "create_date": "2025-01-09",
+      "first_name": "George",
+      "last_name": "Harrison",
+      "email": "george.harrison@example.com",
+      "phone_number": "4412354797",
+      "role": "Nutritionist",
+      "gym_id": "17924113"
+    },
+    {
+      "_id": "39c2ae8a",
+      "create_date": "2025-01-09",
+      "first_name": "Helen",
+      "last_name": "Grace",
+      "email": "helen.grace@example.com",
+      "phone_number": "4487958943",
+      "role": "Trainer",
+      "gym_id": "dfd42806"
+    },
+    {
+      "_id": "e58a38e0",
+      "create_date": "2025-01-09",
+      "first_name": "Michael",
+      "last_name": "Jordan",
+      "email": "michael.jordan@example.com",
+      "phone_number": "4487981321",
+      "role": "Trainer",
+      "gym_id": "dfd42806"
+    },
+    {
+      "_id": "83ec5119",
+      "create_date": "2025-01-09",
+      "first_name": "Jim",
+      "last_name": "Clarson",
+      "email": "jim.clarson@example.com",
+      "phone_number": "442317981",
+      "role": "Nutritionist",
+      "gym_id": "dfd42806"
+    },
+    {
+      "_id": "f996810e",
+      "create_date": "2025-01-09",
+      "first_name": "Drake",
+      "last_name": "Smith",
+      "email": "drake.smith@example.com",
+      "phone_number": "4478913213",
+      "role": "Manager",
+      "gym_id": "dfd42806"
+    },
+    {
+      "_id": "fc94f9b6",
+      "create_date": "2025-01-09",
+      "first_name": "Josh",
+      "last_name": "Smith",
+      "email": "josh.smith@example.com",
+      "phone_number": "4432133654",
+      "role": "Manager",
+      "gym_id": "566610be"
+    },
+    {
+      "_id": "d42e96da",
+      "create_date": "2025-01-09",
+      "first_name": "Harold",
+      "last_name": "Green",
+      "email": "harold.green@example.com",
+      "phone_number": "44987612",
+      "role": "Attendant",
+      "gym_id": "566610be"
+    },
+    {
+      "_id": "1ebc0413",
+      "create_date": "2025-01-09",
+      "first_name": "Marron",
+      "last_name": "Brown",
+      "email": "marron.brown@example.com",
+      "phone_number": "44987321",
+      "role": "Attendant",
+      "gym_id": "566610be"
+    },
+    {
+      "_id": "d3230301",
+      "create_date": "2025-01-09",
+      "first_name": "Liam",
+      "last_name": "Hammond",
+      "email": "liam.hammond@example.com",
+      "phone_number": "4485233259",
+      "role": "Attendant",
+      "gym_id": "566610be"
     }
   ],
   "Payments": [
@@ -217,45 +366,45 @@
       "_id": "06f1114e",
       "create_date": "2024-12-17",
       "member_id": "h6f231j",
-      "subscription_plan": "monthly",
+      "subscription_plan": "Monthly",
       "appointment_ids": [],
-      "payment_method": "credit card",
+      "payment_method": "Credit Card",
       "amount": 39.0
     },
     {
       "_id": "985bd8dc",
       "create_date": "2024-12-17",
       "member_id": "gsa4122",
-      "subscription_plan": "quarterly",
+      "subscription_plan": "Quarterly",
       "appointment_ids": [],
-      "payment_method": "credit card",
+      "payment_method": "Credit Card",
       "amount": 47.0
     },
     {
       "_id": "895f3a22",
       "create_date": "2024-12-17",
       "member_id": "vvb2131",
-      "subscription_plan": "annual",
+      "subscription_plan": "Annual",
       "appointment_ids": [],
-      "payment_method": "credit card",
+      "payment_method": "Credit Card",
       "amount": 50.0
     },
     {
       "_id": "306d735b",
       "create_date": "2024-12-22",
       "member_id": "gsa4122",
-      "subscription_plan": "quarterly",
+      "subscription_plan": "Quarterly",
       "appointment_ids": [],
-      "payment_method": "credit card",
+      "payment_method": "Credit Card",
       "amount": 87.0
     },
     {
       "_id": "ab235993",
       "create_date": "2025-01-05",
       "member_id": "gsa4122",
-      "subscription_plan": "quarterly",
+      "subscription_plan": "Quarterly",
       "appointment_ids": [],
-      "payment_method": "credit card",
+      "payment_method": "Credit Card",
       "amount": 87.0
     }
   ],
@@ -264,8 +413,8 @@
       "_id": "a735d1f7",
       "create_date": "2024-12-12",
       "member_id": "h6f231j",
-      "subscription_plan": "monthly",
-      "payment_method": "credit card",
+      "subscription_plan": "Monthly",
+      "payment_method": "Credit Card",
       "discount": 0.0,
       "active": true,
       "loyalty_points": 0
@@ -274,8 +423,8 @@
       "_id": "3311538d",
       "create_date": "2024-12-17",
       "member_id": "gsa4122",
-      "subscription_plan": "quarterly",
-      "payment_method": "credit card",
+      "subscription_plan": "Quarterly",
+      "payment_method": "Credit Card",
       "discount": 0.0,
       "active": true,
       "loyalty_points": 0
@@ -284,8 +433,8 @@
       "_id": "80da10e6",
       "create_date": "2024-12-17",
       "member_id": "vvb2131",
-      "subscription_plan": "annual",
-      "payment_method": "credit card",
+      "subscription_plan": "Annual",
+      "payment_method": "Credit Card",
       "discount": 0.0,
       "active": true,
       "loyalty_points": 0
@@ -298,9 +447,9 @@
       "member_id": "h6f231j",
       "gym_id": "566610be",
       "staff_id": "d3e48cef",
-      "appointment_type": "personal training",
+      "appointment_type": "Personal Training",
       "schedule_date": "2024-12-09",
-      "status": "active",
+      "status": "Active",
       "duration": 30,
       "is_paid": false
     },
@@ -310,9 +459,9 @@
       "member_id": "gsa4122",
       "gym_id": "566610be",
       "staff_id": "e815e207",
-      "appointment_type": "group class",
+      "appointment_type": "Group Class",
       "schedule_date": "2024-12-18",
-      "status": "active",
+      "status": "Active",
       "duration": 30,
       "is_paid": false
     },
@@ -322,9 +471,9 @@
       "member_id": "vvb2131",
       "gym_id": "566610be",
       "staff_id": "d8e7a9bc",
-      "appointment_type": "nutrition consultation",
+      "appointment_type": "Nutrition Consultation",
       "schedule_date": "2024-12-21",
-      "status": "active",
+      "status": "Active",
       "duration": 30,
       "is_paid": false
     },
@@ -334,9 +483,9 @@
       "member_id": "gsa4122",
       "gym_id": "566610be",
       "staff_id": "d8e7a9bc",
-      "appointment_type": "nutrition consultation",
+      "appointment_type": "Nutrition Consultation",
       "schedule_date": "2024-12-25",
-      "status": "active",
+      "status": "Active",
       "duration": 30,
       "is_paid": false
     }
