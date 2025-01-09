@@ -470,7 +470,7 @@
       "staff_id": "e815e207",
       "appointment_type": "Group Class",
       "schedule_date": "2025-01-09",
-      "status": "Completed",
+      "status": "Active",
       "duration": 30,
       "is_paid": true
     },
@@ -494,7 +494,7 @@
       "staff_id": "d8e7a9bc",
       "appointment_type": "Nutrition Consultation",
       "schedule_date": "2025-01-09",
-      "status": "Completed",
+      "status": "Active",
       "duration": 30,
       "is_paid": true
     }
@@ -526,6 +526,16 @@
       "member_id": "gsa4122",
       "gym_id": "dfd42806",
       "zone_id": "c3d4e5f6",
+      "checkin_time": "12:00",
+      "checkout_time": "13:00",
+      "duration": 60
+    },
+    {
+      "_id": "4d1f89e0",
+      "create_date": "2025-01-09",
+      "member_id": "h6f231j",
+      "gym_id": "dfd42806",
+      "zone_id": "c9255efb",
       "checkin_time": "12:00",
       "checkout_time": "13:00",
       "duration": 60
