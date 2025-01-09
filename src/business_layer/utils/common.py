@@ -24,4 +24,11 @@ class Common:
         else:
             hours = total_minutes // 60
             minutes = total_minutes % 60
-            return f"{hours} {'hours' if hours > 1 else 'hour'} {minutes} {'minutes' if minutes > 1 else 'minute'}"
+            duration_str = f"{hours} {'hours' if hours > 1 else 'hour'}"
+
+            if minutes == 1:
+                duration_str += f" {minutes} minute"
+            elif minutes > 1:
+                duration_str += f" {minutes} minutes"
+
+            return duration_str
