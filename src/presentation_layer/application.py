@@ -49,7 +49,7 @@ class Application:
 
         style.configure(
             'Cancel.TButton',
-            foreground='#a6a39c'
+            foreground='#f5b905'
         )
 
         style.configure(

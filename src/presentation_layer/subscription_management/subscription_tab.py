@@ -22,21 +22,24 @@ class SubscriptionTab(ttk.Frame):
         self.create_button = ttk.Button(
             self.action_frame,
             text="Create Subscription",
-            command=self.create_subscription
+            command=self.create_subscription,
+            style="Create.TButton"
         )
         self.create_button.pack(side='left', padx=5)
 
         self.update_button = ttk.Button(
             self.action_frame,
             text="Update Subscription",
-            command=self.update_subscription
+            command=self.update_subscription,
+            style="Update.TButton"
         )
         self.update_button.pack(side='left', padx=5)
 
         self.cancel_button = ttk.Button(
             self.action_frame,
             text="Cancel Subscription",
-            command=self.cancel_subscription
+            command=self.cancel_subscription,
+            style="Cancel.TButton"
         )
         self.cancel_button.pack(side='left', padx=5)
 

@@ -19,13 +19,13 @@ class StaffMemberTab(ttk.Frame):
         self.action_frame = ttk.Frame(self)
         self.action_frame.grid(row=0, column=0, sticky='ew', padx=10, pady=5)
 
-        self.create_button = ttk.Button(self.action_frame, text="Create Staff Member", command=self.create_staff_member)
+        self.create_button = ttk.Button(self.action_frame, text="Create Staff Member", command=self.create_staff_member, style="Create.TButton")
         self.create_button.pack(side='left', padx=5)
 
-        self.update_button = ttk.Button(self.action_frame, text="Update Staff Member", command=self.update_staff_member)
+        self.update_button = ttk.Button(self.action_frame, text="Update Staff Member", command=self.update_staff_member, style="Update.TButton")
         self.update_button.pack(side='left', padx=5)
 
-        self.delete_button = ttk.Button(self.action_frame, text="Delete Staff Member", command=self.delete_staff_member)
+        self.delete_button = ttk.Button(self.action_frame, text="Delete Staff Member", command=self.delete_staff_member, style="Delete.TButton")
         self.delete_button.pack(side='left', padx=5)
 
         self.tree = ttk.Treeview(self, columns=(

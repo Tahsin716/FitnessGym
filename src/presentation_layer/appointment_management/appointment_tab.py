@@ -26,28 +26,32 @@ class AppointmentTab(ttk.Frame):
         self.create_button = ttk.Button(
             self.action_frame,
             text="Create Appointment",
-            command=self.create_appointment
+            command=self.create_appointment,
+            style="Create.TButton"
         )
         self.create_button.pack(side='left', padx=5)
 
         self.update_button = ttk.Button(
             self.action_frame,
             text="Update Appointment",
-            command=self.update_appointment
+            command=self.update_appointment,
+            style="Update.TButton"
         )
         self.update_button.pack(side='left', padx=5)
 
         self.complete_button = ttk.Button(
             self.action_frame,
             text="Complete Appointment",
-            command=self.complete_appointment
+            command=self.complete_appointment,
+            style="Complete.TButton"
         )
         self.complete_button.pack(side='left', padx=5)
 
         self.cancel_button = ttk.Button(
             self.action_frame,
             text="Cancel Appointment",
-            command=self.cancel_appointment
+            command=self.cancel_appointment,
+            style="Cancel.TButton"
         )
         self.cancel_button.pack(side='left', padx=5)
 

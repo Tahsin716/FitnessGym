@@ -23,13 +23,13 @@ class ZoneTab(ttk.Frame):
         self.tree.heading('Zone Type', text='Zone Type')
         self.tree.heading('Attendant', text='Attendant')
 
-        self.create_button = ttk.Button(self.action_frame, text="Create Zone", command=self.create_zone)
+        self.create_button = ttk.Button(self.action_frame, text="Create Zone", command=self.create_zone, style="Create.TButton")
         self.create_button.pack(side='left', padx=5)
 
-        self.update_button = ttk.Button(self.action_frame, text="Update Zone", command=self.update_zone)
+        self.update_button = ttk.Button(self.action_frame, text="Update Zone", command=self.update_zone, style="Update.TButton")
         self.update_button.pack(side='left', padx=5)
 
-        self.delete_button = ttk.Button(self.action_frame, text="Delete Zone", command=self.delete_zone)
+        self.delete_button = ttk.Button(self.action_frame, text="Delete Zone", command=self.delete_zone, style="Delete.TButton")
         self.delete_button.pack(side='left', padx=5)
 
         self.action_frame.pack(fill='x', pady=5)

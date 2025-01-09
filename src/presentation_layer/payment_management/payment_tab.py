@@ -22,7 +22,7 @@ class PaymentTab(ttk.Frame):
         self.action_frame = ttk.Frame(self)
         self.action_frame.grid(row=0, column=0, sticky='ew', padx=10, pady=5)
 
-        self.create_payment_button = ttk.Button(self.action_frame, text="Create Payment", command=self.create_payment)
+        self.create_payment_button = ttk.Button(self.action_frame, text="Create Payment", command=self.create_payment, style="Create.TButton")
         self.create_payment_button.pack(side='left', padx=5)
 
         self.tree = ttk.Treeview(self, columns=(

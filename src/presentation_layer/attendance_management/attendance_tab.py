@@ -23,7 +23,7 @@ class AttendanceTab(ttk.Frame):
         self.action_frame = ttk.Frame(self)
         self.action_frame.grid(row=0, column=0, sticky='ew', padx=10, pady=5)
 
-        self.create_attendance_button = ttk.Button(self.action_frame, text="Create Attendance", command=self.create_attendance)
+        self.create_attendance_button = ttk.Button(self.action_frame, text="Create Attendance", command=self.create_attendance, style="Create.TButton")
         self.create_attendance_button.pack(side='left', padx=5)
 
         self.tree = ttk.Treeview(self, columns=(
