@@ -2,6 +2,7 @@ import logging
 from typing import Tuple
 
 from src.business_layer.exception.security_exception import SecurityException
+from src.business_layer.utils.validation import Validator
 from src.data_layer.entities.staff_member import StaffMember
 from src.data_layer.enum.role import Role
 from src.data_layer.repository.staff_member_repository import StaffMemberRepository
@@ -20,6 +21,12 @@ class StaffMemberService:
             for field in required_fields:
                 if not data.get(field):
                     raise SecurityException(f"{field.replace('_', ' ')} cannot be empty")
+
+            if not Validator.validate_phone_number(data['phone_number']):
+                raise SecurityException("Invalid phone number")
+
+            if not Validator.validate_email(data['email']):
+                raise SecurityException("Invalid email address")
 
             if not isinstance(data['role'], Role):
                 raise SecurityException("Invalid role")
@@ -45,6 +52,12 @@ class StaffMemberService:
 
             if self.staff_member_repository.get_by_id(_id) is None:
                 raise SecurityException("No staff member exists with the given ID")
+
+            if not Validator.validate_phone_number(data['phone_number']):
+                raise SecurityException("Invalid phone number")
+
+            if not Validator.validate_email(data['email']):
+                raise SecurityException("Invalid email address")
 
             staff_member = self.staff_member_repository.update(_id, data)
             return True, "", staff_member

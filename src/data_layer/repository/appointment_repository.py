@@ -47,3 +47,8 @@ class AppointmentRepository:
         if _id in self.__appointments:
             appointment = self.__appointments[_id]
             appointment.status = AppointmentStatus.COMPLETED
+
+    def complete_payment(self, _id: str) -> None:
+        if _id in self.__appointments:
+            appointment = self.__appointments[_id]
+            appointment.is_paid = True

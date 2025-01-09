@@ -15,7 +15,7 @@ class Subscription(BaseEntity):
         self.__monthly_rate : float = self.__get_monthly_rate()
         self.__payment_method : PaymentMethod = data['payment_method']
         self.__discount : float = data['discount']
-        self.__active : bool = True
+        self.__active : bool = data.get('active', True)
         self.__loyalty_points : int = 0
 
     @property

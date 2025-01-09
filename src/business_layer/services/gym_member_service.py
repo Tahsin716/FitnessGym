@@ -2,6 +2,7 @@ import logging
 from typing import Tuple, List
 
 from src.business_layer.exception.security_exception import SecurityException
+from src.business_layer.utils.validation import Validator
 from src.data_layer.entities.gym_member import GymMember
 from src.data_layer.enum.membership_type import MembershipType
 from src.data_layer.repository.gym_member_repository import GymMemberRepository
@@ -28,6 +29,12 @@ class GymMemberService:
                 data['weight'] = float(data['weight'])
             except ValueError:
                 raise SecurityException("Invalid Height/Weight value")
+
+            if not Validator.validate_phone_number(data['phone_number']):
+                raise SecurityException("Invalid phone number")
+
+            if not Validator.validate_email(data['email']):
+                raise SecurityException("Invalid email address")
 
             if any(x < 0 for x in [data['height'],data['weight']]):
                 raise SecurityException("Height and Weight cannot be negative")
@@ -56,6 +63,12 @@ class GymMemberService:
 
             if not isinstance(data['membership_type'], MembershipType):
                 raise SecurityException("Invalid membership type")
+
+            if not Validator.validate_phone_number(data['phone_number']):
+                raise SecurityException("Invalid phone number")
+
+            if not Validator.validate_email(data['email']):
+                raise SecurityException("Invalid email address")
 
             if self.gym_member_repository.get_by_id(_id) is None:
                 raise SecurityException("No member exists with the given ID")

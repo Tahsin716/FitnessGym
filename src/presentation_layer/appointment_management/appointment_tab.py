@@ -57,7 +57,7 @@ class AppointmentTab(ttk.Frame):
 
         self.tree = ttk.Treeview(self, columns=(
             'ID', 'Member', 'Gym', 'Staff', 'Appointment Type',
-            'Scheduled Date', 'Status', 'Duration'
+            'Scheduled Date', 'Status', 'Duration', 'Payment Status'
         ), show='headings')
 
         columns_config = [
@@ -68,7 +68,8 @@ class AppointmentTab(ttk.Frame):
             ('Appointment Type', 150),
             ('Scheduled Date', 120),
             ('Status', 100),
-            ('Duration', 100)
+            ('Duration', 100),
+            ('Payment Status', 100)
         ]
 
         for col, width in columns_config:
@@ -107,7 +108,8 @@ class AppointmentTab(ttk.Frame):
                 appointment.appointment_type.value,
                 appointment.scheduled_date.strftime('%Y-%m-%d'),
                 appointment.status.value,
-                appointment.duration
+                appointment.duration,
+               "Paid" if appointment.is_paid else "Pending"
             ))
 
     def create_appointment(self):

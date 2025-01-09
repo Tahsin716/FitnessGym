@@ -20,7 +20,7 @@ class Appointment(BaseEntity):
         self.__status : AppointmentStatus = AppointmentStatus.ACTIVE
         self.__duration : int = data['duration']
         self.__cost : float = self.__calculate_session_cost()
-        self.__is_paid : bool = False
+        self.__is_paid : bool = data.get('is_paid', False)
 
     @property
     def gym_id(self) -> str:
